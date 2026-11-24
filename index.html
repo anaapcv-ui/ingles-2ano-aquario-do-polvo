@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐙 Aquário do Polvo Lelé — Inglês 2º ano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#1E88C8;        /* azul-aquário */
+  --azul-esc:#13649A;
+  --azul-claro:#E3F3FC;
+  --amar:#F2665C;        /* coral-polvo */
+  --amar-esc:#C2443B;
+  --verm:#2BB673;        /* verde-alga */
+  --verm-esc:#1D8752;
+  --verde:#2BB673;
+  --verde-esc:#1D8752;
+  --papel:#EEF8FD;       /* azul-bolha */
+  --tinta:#1F2D3A;
+  --cinza:#5F7383;
+  --borda:#CFE3EE;
+  --erro:#E2483D;
+  --areia:#F6C343;       /* amarelo-areia */
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Nunito',system-ui,sans-serif;
+  background:var(--papel);
+  background-image:radial-gradient(circle at 12px 12px,rgba(30,136,200,.10) 4px,transparent 5px),radial-gradient(circle at 36px 30px,rgba(43,182,115,.08) 3px,transparent 4px);
+  background-size:48px 48px;
+  color:var(--tinta);font-size:17px;line-height:1.5;padding-bottom:40px;
+}
+h1,h2,h3{font-family:'Baloo 2',cursive;margin:0 0 10px;line-height:1.2;}
+.wrap{max-width:560px;margin:0 auto;padding:0 14px;}
+
+/* topo: a mochila de adesivos */
+.topbar{position:sticky;top:0;z-index:40;background:var(--azul);border-bottom:4px solid var(--azul-esc);padding:8px 0 6px;}
+.topbar .wrap{display:flex;align-items:center;gap:8px;}
+.logo{font-family:'Baloo 2',cursive;font-weight:800;font-size:1rem;color:#FFF6E0;white-space:nowrap;}
+.ovos{display:flex;gap:5px;margin-left:auto;}
+.ov{width:26px;height:26px;border-radius:50%;background:#D7ECF8;border:3px dashed #8CC3E3;opacity:.6;transition:.25s;display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+.ov.on{background:var(--areia);border:3px solid #fff;opacity:1;transform:rotate(-8deg) scale(1.08);}
+.ov.on::after{content:'🐚';}
+.tray-label{text-align:center;font-size:.72rem;color:#EAF6FF;font-weight:800;}
+
+.screen{display:none;}
+.screen.on{display:block;animation:fade .25s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+.card{background:#fff;border:3px solid var(--borda);border-radius:18px;padding:16px;margin:14px 0;box-shadow:0 4px 0 rgba(0,0,0,.06);}
+.card.blue{background:var(--azul-claro);border-color:#C6D5F3;}
+.card.green{background:#EAF6EC;border-color:#BFE2C5;}
+.card.lilas{background:#FFF4E8;border-color:#F6D7B5;}
+
+.hero{background:linear-gradient(170deg,#3FB0E8 0%,#1E88C8 55%,#13649A 100%);color:#fff;border-radius:20px;padding:20px 16px 18px;margin:16px 0;border:3px solid var(--azul-esc);text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'🫧 🐠 🐙 🎹 🥁 🐚 🫧';position:absolute;left:0;right:0;bottom:6px;font-size:1.25rem;letter-spacing:6px;opacity:.95;}
+.hero h1{font-size:1.95rem;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.25);margin:6px 0 2px;}
+.hero .sub{font-size:.95rem;font-weight:800;text-shadow:0 1px 0 rgba(0,0,0,.3);color:#fff;}
+.hero .prova{display:inline-block;margin:10px 0 26px;background:var(--amar);color:#fff;font-weight:900;border-radius:999px;padding:5px 14px;font-size:.85rem;}
+.mascote{display:flex;gap:10px;align-items:flex-start;background:#fff;border:3px solid var(--borda);border-radius:16px;padding:12px;margin:12px 0;}
+.mascote .face{font-size:2.4rem;line-height:1;flex:0 0 auto;}
+.balao{position:relative;background:#FFEDEB;border:2px solid #F5A9A3;border-radius:14px;padding:9px 11px;font-weight:700;font-size:.95rem;flex:1;}
+.balao::before{content:'';position:absolute;left:-9px;top:14px;border:7px solid transparent;border-right-color:#F5A9A3;}
+
+.btn{display:block;width:100%;border:0;border-radius:14px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.05rem;padding:13px 14px;margin:9px 0;cursor:pointer;text-align:left;background:var(--azul);color:#fff;box-shadow:0 4px 0 var(--azul-esc);transition:.1s;position:relative;}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--azul-esc);}
+.btn:focus-visible{outline:4px solid var(--amar);outline-offset:2px;}
+.btn.yellow{background:var(--amar);color:#fff;box-shadow:0 4px 0 var(--amar-esc);}
+.btn.red{background:var(--erro);color:#fff;box-shadow:0 4px 0 #AE2F26;}
+.btn.green{background:var(--verde);color:#fff;box-shadow:0 4px 0 var(--verde-esc);}
+.btn.lilas{background:var(--verm);color:#fff;box-shadow:0 4px 0 var(--verm-esc);}
+.btn.ghost{background:#fff;color:var(--azul-esc);border:3px solid var(--azul);box-shadow:none;}
+.btn.small{font-size:.92rem;padding:9px 12px;}
+.btn[disabled]{opacity:.45;cursor:not-allowed;}
+.btn.locked{background:#DAD7DF;color:#6C6878;box-shadow:0 4px 0 #BBB7C4;}
+.btn.glow{animation:glow 1.6s ease-in-out 3;}
+@keyframes glow{0%,100%{box-shadow:0 4px 0 var(--azul-esc),0 0 0 0 rgba(242,140,40,0);}50%{box-shadow:0 4px 0 var(--azul-esc),0 0 0 7px rgba(242,140,40,.55);}}
+.selo{display:inline-block;font-family:'Nunito';font-size:.72rem;font-weight:900;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle;}
+.selo.ok{background:#DDF3E1;color:#1F6B2B;}
+.selo.novo{background:#FFE7CC;color:#8A4A00;}
+.btn-row{display:flex;gap:8px;}
+.btn-row .btn{flex:1;}
+.menu-desc{font-size:.82rem;color:var(--cinza);margin:-4px 0 10px 4px;font-weight:700;}
+.menu-desc.lock{color:#8A4B2A;}
+.paisbox{background:#FFE7CC;border:2px solid #F2B46B;border-radius:14px;padding:10px 12px;margin:10px 0;font-weight:800;font-size:.92rem;}
+
+/* pílulas */
+.pill-box{background:#fff;border:3px dashed var(--azul);border-radius:18px;padding:22px 16px;text-align:center;min-height:200px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;}
+.pill-emoji{font-size:3.1rem;line-height:1;}
+.pill-text{font-size:1.1rem;font-weight:800;}
+.pill-extra{font-size:.98rem;font-weight:800;color:var(--azul-esc);background:var(--azul-claro);border-radius:12px;padding:8px 10px;}
+.pill-dots{display:flex;gap:6px;justify-content:center;margin:12px 0;flex-wrap:wrap;}
+.pill-dots i{width:10px;height:10px;border-radius:50%;background:#E3DCCD;display:block;}
+.pill-dots i.on{background:var(--amar);}
+.fotos{display:flex;gap:8px;width:100%;}
+.fotos div{flex:1;background:#F6F1E6;border:2px solid var(--borda);border-radius:12px;padding:8px;font-size:.9rem;font-weight:800;text-align:left;}
+.fotos b{display:block;font-family:'Baloo 2';font-size:1rem;color:var(--verm-esc);}
+
+/* jogo */
+.q-count{font-size:.8rem;font-weight:900;color:var(--cinza);text-align:right;}
+.q-text{font-size:1.06rem;font-weight:800;margin:6px 0 12px;}
+.opt{display:block;width:100%;text-align:left;border:3px solid var(--borda);background:#fff;border-radius:14px;padding:12px 14px;margin:8px 0;font-family:'Nunito';font-weight:800;font-size:1rem;cursor:pointer;transition:.12s;color:var(--tinta);}
+.opt:hover{border-color:var(--azul);}
+.opt:focus-visible{outline:4px solid var(--amar);outline-offset:2px;}
+.opt.ok{background:#E2F4E5;border-color:var(--verde);}
+.opt.no{background:#FCE4E1;border-color:var(--erro);}
+.opt[disabled]{cursor:default;}
+.fb{margin:12px 0;padding:12px;border-radius:14px;font-weight:700;display:none;}
+.fb.on{display:block;}
+.fb.good{background:#E2F4E5;border:2px solid var(--verde);}
+.fb.bad{background:#FCE4E1;border:2px solid var(--erro);}
+.duo{display:flex;gap:8px;}
+.duo .opt{flex:1;text-align:center;}
+.vis{text-align:center;margin:4px 0 8px;}
+.frase{background:#FFFBF2;border:2px dashed var(--amar);border-radius:14px;padding:12px;font-weight:800;font-size:1.05rem;text-align:center;margin:0 0 10px;}
+.texto{background:#FFFDF7;border:2px solid var(--borda);border-left:6px solid var(--verde);border-radius:12px;padding:12px;font-weight:600;font-size:.97rem;text-align:left;margin:4px 0 10px;}
+.texto p{margin:0 0 8px;}
+.texto .fonte{font-size:.78rem;color:var(--cinza);font-weight:700;margin:0;}
+
+/* separar em grupos */
+.grp-card{background:#fff;border:3px solid var(--amar);border-radius:18px;padding:14px;text-align:center;margin:6px 0 10px;}
+.grp-btns{display:flex;flex-wrap:wrap;gap:8px;}
+.grp-btns .opt{flex:1 1 45%;text-align:center;margin:0;}
+.grp-btns .opt.shake{animation:shake .35s;border-color:var(--erro);background:#FCE4E1;}
+@keyframes shake{0%,100%{transform:none;}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+.baskets{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.basket{flex:1 1 45%;background:var(--azul-claro);border:2px dashed #A9C0EE;border-radius:14px;padding:8px;min-height:64px;font-size:.85rem;}
+.basket b{display:block;font-family:'Baloo 2';font-size:.95rem;}
+.chip{display:inline-block;background:#fff;border:2px solid var(--verde);border-radius:999px;padding:2px 8px;margin:3px 2px;font-weight:800;font-size:.82rem;}
+
+/* escrita */
+.wbox{border:3px solid var(--borda);border-radius:16px;padding:13px;margin:12px 0;background:#fff;}
+.wbox.red{border-color:var(--erro);background:#FFF2F0;}
+.wbox h4{margin:0 0 6px;font-family:'Baloo 2';font-size:1.02rem;}
+.wbox textarea{width:100%;min-height:90px;border:2px solid var(--borda);border-radius:12px;padding:10px;font-family:'Nunito';font-size:1rem;font-weight:600;resize:vertical;background:#FFFDF6;}
+.wbox textarea:focus{outline:3px solid var(--amar);border-color:var(--amar);}
+.warn{background:#FFF3CE;border:2px solid #E5B93C;border-radius:12px;padding:10px;margin:8px 0;font-weight:700;font-size:.93rem;}
+.redflag{background:#FCE4E1;border:2px solid var(--erro);border-radius:12px;padding:10px;margin:8px 0;font-weight:800;font-size:.9rem;color:#8E2A18;}
+.modelo{background:var(--azul-claro);border:2px solid #C6D5F3;border-radius:12px;padding:10px;margin:8px 0;font-weight:700;font-size:.95rem;}
+.chk{margin:8px 0;}
+.chk p{margin:6px 0 4px;font-weight:800;font-size:.94rem;}
+.chk .yn{display:flex;gap:8px;}
+.chk .yn button{flex:1;border:3px solid var(--borda);background:#fff;border-radius:10px;padding:7px;font-family:'Nunito';font-weight:900;cursor:pointer;font-size:.92rem;}
+.chk .yn button.sel-y{background:#E2F4E5;border-color:var(--verde);}
+.chk .yn button.sel-n{background:#FFF3CE;border-color:#E5B93C;}
+
+/* cartaz */
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;margin:8px 0;}
+.tbl th,.tbl td{border:2px solid var(--borda);padding:6px 8px;text-align:left;vertical-align:top;}
+.tbl th{background:var(--azul-claro);font-weight:900;}
+.postit{background:#FFF6A8;border:2px solid #E8D75A;border-radius:6px;padding:11px;margin:10px 0;font-weight:800;font-size:.95rem;box-shadow:2px 3px 0 rgba(0,0,0,.08);}
+.alerta{background:#FCE4E1;border:2px solid var(--erro);border-radius:12px;padding:11px;margin:10px 0;font-weight:800;font-size:.95rem;}
+
+/* resultado */
+.big{font-size:3.4rem;text-align:center;line-height:1;margin:6px 0;}
+.code-box{background:var(--tinta);color:#FFE08A;border-radius:14px;padding:14px;text-align:center;font-family:'Baloo 2';font-size:1.6rem;font-weight:800;letter-spacing:2px;margin:12px 0;}
+.codein{width:100%;border:3px solid var(--borda);border-radius:12px;padding:11px;font-family:'Baloo 2';font-size:1.1rem;text-align:center;letter-spacing:2px;text-transform:uppercase;}
+.save-info{font-size:.8rem;color:var(--cinza);font-weight:700;text-align:center;margin-top:10px;}
+textarea#backupBox{width:100%;min-height:76px;border:2px solid var(--borda);border-radius:12px;padding:9px;font-family:monospace;font-size:.78rem;}
+
+.mask{position:fixed;inset:0;background:rgba(30,30,50,.6);display:none;align-items:center;justify-content:center;z-index:90;padding:18px;}
+.mask.on{display:flex;}
+.md{background:#fff;border-radius:18px;padding:18px;max-width:380px;width:100%;border:4px solid var(--azul);}
+.md h3{font-size:1.2rem;}
+.conf{position:fixed;top:-12px;width:9px;height:14px;z-index:95;pointer-events:none;border-radius:2px;}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0;}}
+@media (prefers-reduced-motion:reduce){.screen.on{animation:none;}.conf{display:none;}.btn:active{transform:none;}.btn.glow{animation:none;}.grp-btns .opt.shake{animation:none;}}
+.rodape{text-align:center;font-size:.78rem;color:var(--cinza);font-weight:700;padding:18px 0 6px;}
+/* montar a frase */
+.ord-out{min-height:58px;background:#FFFBF2;border:2px dashed var(--amar);border-radius:14px;padding:10px;margin:0 0 10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.ord-out .chip{font-size:1rem;border-color:var(--azul);}
+.ord-out .vazio{color:var(--cinza);font-weight:700;font-size:.9rem;}
+.ord-pool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.ord-pool .opt{width:auto;display:inline-block;margin:0;padding:10px 14px;}
+.ord-pool .opt.usado{visibility:hidden;}
+.fotos{flex-wrap:wrap;}
+.fotos div{flex:1 1 40%;}
+
+
+/* 🔊 pronúncia */
+.sayw{display:inline-block;cursor:pointer;background:var(--azul-claro);border:2px solid #9FCDEA;border-radius:999px;padding:0 7px;margin:0 2px;font-size:.85em;line-height:1.5;vertical-align:middle;user-select:none;}
+.sayw:hover{background:#CDEAFB;}
+.sayw:focus-visible{outline:3px solid var(--amar);outline-offset:2px;}
+/* cena (figura descrita) */
+.cena{display:inline-block;background:#fff;border:3px solid var(--borda);border-radius:16px;padding:10px 16px;margin:0 0 6px;}
+.cena-e{font-size:2.6rem;line-height:1.1;}
+.cena-l{font-size:.85rem;font-weight:800;color:var(--cinza);}
+/* jogo de pintar (ímpar / par) */
+.tintas{display:flex;gap:8px;margin:6px 0 10px;}
+.tinta{flex:1;border:3px solid var(--borda);border-radius:14px;padding:10px;font-family:'Baloo 2';font-weight:800;font-size:1rem;cursor:pointer;background:#fff;}
+.tinta.azul{color:#0D4F86;} .tinta.amarela{color:#7A5A00;}
+.tinta.sel.azul{background:#BFE0FA;border-color:#2A7BD4;} .tinta.sel.amarela{background:#FFF0A6;border-color:#E2B400;}
+.macas{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;}
+.maca{border:3px solid #C9D6DE;border-radius:46% 46% 50% 50%;background:#fff;font-family:'Baloo 2';font-weight:800;font-size:1.15rem;padding:9px 0;cursor:pointer;position:relative;color:var(--tinta);}
+.maca::before{content:'🍃';position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-size:.8rem;}
+.maca.azul{background:#7FBDF0;border-color:#2A7BD4;} .maca.amarela{background:#FFE36B;border-color:#E2B400;}
+.maca.errada{outline:4px solid var(--erro);outline-offset:1px;}
+.maca[disabled]{cursor:default;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="logo">🐙 Aquário do Polvo Lelé</span>
+    <div class="ovos" aria-label="Conchas do aquário">
+      <div class="ov" id="ov1"></div><div class="ov" id="ov2"></div><div class="ov" id="ov3"></div>
+      <div class="ov" id="ov4"></div><div class="ov" id="ov5"></div><div class="ov" id="ov6"></div>
+    </div>
+  </div>
+  <div class="tray-label" id="trayLabel">🐚 Suas conchas</div>
+</div>
+
+<!-- ============ MENU ============ -->
+<section class="screen on" id="scr-menu">
+  <div class="wrap">
+    <div class="hero">
+      <h1>Aquário do Polvo Lelé</h1>
+      <div class="sub">Inglês · 2º ano · Colégio São José</div>
+      <div class="sub">Units 6, 7 e 8 — My day! · I can play music! · Float or sink?</div>
+      <div class="prova">🗓️ Avaliação: quinta-feira, 26/11</div>
+    </div>
+
+    <div class="mascote">
+      <div class="face">🐙</div>
+      <div class="balao">
+        Hello, jovem aprendiz! Eu sou o <b>Polvo Lelé</b>. Tenho 8 braços e toco um instrumento em cada um! 🎹🥁🎸
+        Meu aquário tem <b>6 tanques</b>, um para cada pedaço da prova. Os tanques abrem <b>um de cada vez, na ordem</b>:
+        termine um para destravar o próximo. Cada tanque vale uma <b>concha 🐚</b> lá em cima!
+        Aperte o <b>🔊</b> para ouvir as palavras em inglês e repita em voz alta. No fim tem o <b>Show Final</b>. Let's go! 🫧
+      </div>
+    </div>
+
+    <div id="paisSelo"></div>
+    <h2>🫧 Os tanques do aquário</h2>
+    <div id="menuList"></div>
+
+    <button class="btn ghost small" onclick="go('scr-pais')">👪 Área dos pais</button>
+    <div class="save-info" id="saveInfo"></div>
+    <div class="rodape">Feito para estudar sozinho, no celular ou no computador.</div>
+  </div>
+</section>
+
+<!-- ============ CARTAZ DO AQUÁRIO ============ -->
+<section class="screen" id="scr-mural">
+  <div class="wrap">
+    <h1 style="margin-top:14px;">🗺️ Cartaz do Aquário</h1>
+    <p style="font-weight:700;">Tudo o que cai na avaliação, num lugar só. Leia com um adulto, devagar, até o fim. Aperte 🔊 para ouvir.</p>
+    <div class="postit">💛 Na prova, as palavras em inglês vão estar escritas para você <b>ligar / associar</b>. Então o mais importante é <b>reconhecer</b> cada palavra e saber o que ela quer dizer.</div>
+
+    <div class="card blue">
+      <h3>🌅 Unit 6 — Parts of the day (as partes do dia)</h3>
+      <table class="tbl">
+        <tr><th>Inglês</th><th>Português</th><th>Como é o céu</th></tr>
+        <tr><td>🌅 <b>morning</b> <span class="sayw" data-say="morning">🔊</span></td><td>manhã</td><td>o Sol nascendo</td></tr>
+        <tr><td>☀️ <b>afternoon</b> <span class="sayw" data-say="afternoon">🔊</span></td><td>tarde</td><td>o Sol bem alto, céu azul</td></tr>
+        <tr><td>🌇 <b>evening</b> <span class="sayw" data-say="evening">🔊</span></td><td>fim de tarde / anoitecer</td><td>o Sol se pondo</td></tr>
+        <tr><td>🌙 <b>night</b> <span class="sayw" data-say="night">🔊</span></td><td>noite</td><td>Lua e estrelas</td></tr>
+      </table>
+      <div class="postit">💛 A ordem: morning → afternoon → evening → night.<br>💛 Dizemos <b>IN</b> the morning · <b>IN</b> the afternoon · <b>IN</b> the evening, mas <b>AT</b> night.</div>
+      <table class="tbl">
+        <tr><th>☀️ DAY (dia)</th><th>🌙 NIGHT (noite)</th></tr>
+        <tr><td><b>the sun</b> <span class="sayw" data-say="the sun">🔊</span> = o Sol</td><td><b>the moon</b> <span class="sayw" data-say="the moon">🔊</span> = a Lua<br><b>the stars</b> <span class="sayw" data-say="the stars">🔊</span> = as estrelas</td></tr>
+      </table>
+      <p style="font-weight:700;">☄️ <b>a comet</b> <span class="sayw" data-say="a comet">🔊</span> = um cometa (também aparece no livro).</p>
+      <div class="alerta">⚠️ Escreva certinho: <b>S-U-N</b> (termina com N, não "sum") e <b>M-O-O-N</b> (com dois O, não "mon").</div>
+    </div>
+
+    <div class="card">
+      <h3>⏰ Unit 6 — Actions (o que eu faço no dia)</h3>
+      <table class="tbl">
+        <tr><th>Inglês</th><th>Português</th></tr>
+        <tr><td>⏰ <b>wake up</b> <span class="sayw" data-say="wake up">🔊</span></td><td>acordar</td></tr>
+        <tr><td>🛏️ <b>get up</b> <span class="sayw" data-say="get up">🔊</span></td><td>levantar</td></tr>
+        <tr><td>🥣 <b>have breakfast</b> <span class="sayw" data-say="have breakfast">🔊</span></td><td>tomar café da manhã</td></tr>
+        <tr><td>🎒 <b>go to school</b> <span class="sayw" data-say="go to school">🔊</span></td><td>ir para a escola</td></tr>
+        <tr><td>🍽️ <b>have lunch</b> <span class="sayw" data-say="have lunch">🔊</span></td><td>almoçar</td></tr>
+        <tr><td>🎮 <b>play games</b> <span class="sayw" data-say="play games">🔊</span></td><td>brincar / jogar</td></tr>
+        <tr><td>🍝 <b>have dinner</b> <span class="sayw" data-say="have dinner">🔊</span></td><td>jantar</td></tr>
+        <tr><td>😴 <b>go to bed</b> <span class="sayw" data-say="go to bed">🔊</span></td><td>ir para a cama</td></tr>
+      </table>
+      <div class="postit">💛 breakfast → in the morning · lunch → in the afternoon · dinner → in the evening.</div>
+      <p style="font-weight:700;">🎒 In the morning, I go to school. · 🍝 In the evening, I have dinner. · 😴 At night, I go to bed.</p>
+      <div class="alerta">⚠️ É <b>"I play games"</b> e <b>"I have dinner"</b>. Não coloque "the" no meio: nada de "I the play games" ou "I the dinner".</div>
+    </div>
+
+    <div class="card lilas">
+      <h3>🎹 Unit 7 — Instruments (instrumentos)</h3>
+      <table class="tbl">
+        <tr><th>Inglês</th><th>Português</th></tr>
+        <tr><td>🎹 <b>piano</b> <span class="sayw" data-say="piano">🔊</span></td><td>piano</td></tr>
+        <tr><td>🎶 <b>flute</b> <span class="sayw" data-say="flute">🔊</span></td><td>flauta</td></tr>
+        <tr><td>🥁 <b>drums</b> <span class="sayw" data-say="drums">🔊</span></td><td>bateria / tambor</td></tr>
+        <tr><td>🎸 <b>guitar</b> <span class="sayw" data-say="guitar">🔊</span></td><td>violão / guitarra</td></tr>
+        <tr><td>🪘 <b>tambourine</b> <span class="sayw" data-say="tambourine">🔊</span></td><td>pandeiro</td></tr>
+        <tr><td>🔺 <b>triangle</b> <span class="sayw" data-say="triangle">🔊</span></td><td>triângulo</td></tr>
+      </table>
+      <table class="tbl">
+        <tr><th>Ações</th><th>Português</th></tr>
+        <tr><td>🎤 <b>sing</b> <span class="sayw" data-say="sing">🔊</span></td><td>cantar</td></tr>
+        <tr><td>💃 <b>dance</b> <span class="sayw" data-say="dance">🔊</span></td><td>dançar</td></tr>
+        <tr><td>🎧 <b>listen</b> <span class="sayw" data-say="listen">🔊</span></td><td>ouvir, escutar</td></tr>
+        <tr><td>🎵 <b>play</b> <span class="sayw" data-say="play">🔊</span></td><td>tocar (um instrumento) · jogar, brincar</td></tr>
+      </table>
+      <table class="tbl">
+        <tr><th>🌸 soft</th><th>📢 loud</th><th>🏃 fast</th><th>🐢 slow</th></tr>
+        <tr><td>suave, baixinho</td><td>alto, barulhento</td><td>rápido</td><td>devagar, lento</td></tr>
+      </table>
+      <p style="font-weight:700;">🚄 The train is <b>fast</b>. · 🥁 The drum music is <b>loud</b>. · 🚲 The bike is <b>slow</b>. · 🎶 The flute music is <b>soft</b>.</p>
+      <div class="alerta">⚠️ "I can play the <b>flute</b>." (e não "play the ballet": ballet é dança!)</div>
+    </div>
+
+    <div class="card green">
+      <h3>🙌 Unit 7 — LET'S... e CAN / CAN'T</h3>
+      <table class="tbl">
+        <tr><th>Convite</th><th>Quer dizer</th></tr>
+        <tr><td>Let's dance! <span class="sayw" data-say="Let's dance!">🔊</span></td><td>Vamos dançar!</td></tr>
+        <tr><td>Let's sing! <span class="sayw" data-say="Let's sing!">🔊</span></td><td>Vamos cantar!</td></tr>
+        <tr><td>Let's play soccer! <span class="sayw" data-say="Let's play soccer!">🔊</span></td><td>Vamos jogar futebol!</td></tr>
+        <tr><td>Let's play a game! <span class="sayw" data-say="Let's play a game!">🔊</span></td><td>Vamos jogar um jogo!</td></tr>
+        <tr><td>Let's play the piano! <span class="sayw" data-say="Let's play the piano!">🔊</span></td><td>Vamos tocar piano!</td></tr>
+      </table>
+      <table class="tbl">
+        <tr><th>😀 SIM</th><th>🙁 NÃO</th><th>🙌 TAMBÉM</th></tr>
+        <tr><td>Yes, let's! <span class="sayw" data-say="Yes, let's!">🔊</span><br><small>Sim, vamos!</small></td><td>No, I don't want to. <span class="sayw" data-say="No, I don't want to.">🔊</span><br><small>Não, eu não quero.</small></td><td>I can... too. <span class="sayw" data-say="I can play it too!">🔊</span><br><small>Eu também sei...</small></td></tr>
+      </table>
+      <div class="alerta">⚠️ Olhe a figura! "Let's play soccer!" com a figura de alguém jogando futebol <b>combina → ✓</b>. Na prova de novembro foi marcado ✗.</div>
+      <table class="tbl">
+        <tr><th>✅ CAN</th><th>❌ CAN'T</th></tr>
+        <tr><td>sei, consigo, posso<br><b>I can play the guitar.</b> <span class="sayw" data-say="I can play the guitar.">🔊</span></td><td>não sei, não consigo<br><b>I can't sing.</b> <span class="sayw" data-say="I can't sing.">🔊</span></td></tr>
+      </table>
+      <div class="postit">✍️ Escreva certinho: <b>C-A-N</b> (termina com N) e <b>C-A-N-'-T</b> (com apóstrofo e T).<br>💛 Ordem: QUEM + can / can't + AÇÃO → Sarah can't play the violin.</div>
+      <div class="alerta">⚠️ Nada de "cam", "camt" ou "cont"! Nas folhas do caderno esse foi o erro que mais apareceu.</div>
+      <p style="font-weight:700;">✍️ Nomes que também apareceram nas folhas: <b>guitar</b> (G-U-I-T-A-R) · <b>tennis</b> (dois N) · <b>basketball</b> · <b>skateboard</b> · <b>violin</b> · <b>piano</b>.</p>
+      <div class="postit">💛 <b>PLAY THE</b> + instrumento: play the guitar, play the piano. <b>PLAY</b> + jogo/esporte, sem "the": play tennis, play basketball, play soccer.</div>
+      <table class="tbl">
+        <tr><th>Quem fala</th><th>O que sabe fazer</th><th>Figura</th></tr>
+        <tr><td>Tom</td><td>I can play the guitar.</td><td>🎸 menino com violão</td></tr>
+        <tr><td>Lisa</td><td>I can play the flute.</td><td>🎶 menina com flauta</td></tr>
+        <tr><td>Emma</td><td>I can dance.</td><td>🩰 bailarina</td></tr>
+        <tr><td>Sue</td><td>I can play the piano.</td><td>🎹 menina no piano</td></tr>
+      </table>
+      <div class="alerta">⚠️ Na prova de novembro, Emma e Sue ficaram trocadas. Procure a palavra-chave: <b>dance</b> → bailarina · <b>piano</b> → piano.</div>
+    </div>
+
+    <div class="card">
+      <h3>🔢 Unit 7 — Numbers 1 a 20</h3>
+      <table class="tbl">
+        <tr><th>1</th><td>one</td><th>11</th><td>eleven</td></tr>
+        <tr><th>2</th><td>two</td><th>12</th><td>twelve</td></tr>
+        <tr><th>3</th><td>three</td><th>13</th><td>thirteen</td></tr>
+        <tr><th>4</th><td>four</td><th>14</th><td>fourteen</td></tr>
+        <tr><th>5</th><td>five</td><th>15</th><td>fifteen</td></tr>
+        <tr><th>6</th><td>six</td><th>16</th><td>sixteen</td></tr>
+        <tr><th>7</th><td>seven</td><th>17</th><td>seventeen</td></tr>
+        <tr><th>8</th><td>eight</td><th>18</th><td>eighteen</td></tr>
+        <tr><th>9</th><td>nine</td><th>19</th><td>nineteen</td></tr>
+        <tr><th>10</th><td>ten</td><th>20</th><td>twenty</td></tr>
+      </table>
+      <table class="tbl">
+        <tr><th>🔵 ODD = ímpar</th><th>🟡 EVEN = par</th></tr>
+        <tr><td>1 · 3 · 5 · 7 · 9 · 11 · 13 · 15 · 17 · 19</td><td>2 · 4 · 6 · 8 · 10 · 12 · 14 · 16 · 18 · 20</td></tr>
+      </table>
+      <div class="alerta">🚨 <b>O ERRO MAIS IMPORTANTE:</b> na prova de novembro as cores ficaram trocadas.<br>"Color the <b>ODD</b> numbers with <b>BLUE</b> and <b>EVEN</b> numbers with <b>YELLOW</b>."<br>→ <b>ODD 🔵 BLUE</b> (ímpar = azul) · <b>EVEN 🟡 YELLOW</b> (par = amarelo).</div>
+      <div class="postit">💛 Truque do par: o número termina em 0, 2, 4, 6 ou 8 → <b>EVEN</b>. Termina em 1, 3, 5, 7 ou 9 → <b>ODD</b>.<br>💛 Antes de pintar, leia de novo qual cor vai em cada um.</div>
+    </div>
+
+    <div class="card blue">
+      <h3>🫧 Unit 8 — Float or sink?</h3>
+      <table class="tbl">
+        <tr><th>🛟 It floats. <span class="sayw" data-say="It floats.">🔊</span></th><th>⚓ It sinks. <span class="sayw" data-say="It sinks.">🔊</span></th></tr>
+        <tr><td>Ele boia (fica em cima da água).</td><td>Ele afunda (vai para o fundo).</td></tr>
+        <tr><td>🪵 a rolha · ✏️ o lápis · 🏐 a bola</td><td>🪨 a pedra · 📎 o clipe</td></tr>
+      </table>
+      <p style="font-weight:700;">❓ Does it float or sink? <span class="sayw" data-say="Does it float or sink?">🔊</span> = Ele boia ou afunda?<br>💭 I think it floats. <span class="sayw" data-say="I think it floats.">🔊</span> = Eu acho que ele boia.</p>
+      <div class="postit">💛 <b>float</b> = boiar · <b>sink</b> = afundar.</div>
+    </div>
+
+    <div class="card" style="text-align:center;" id="muralFim">
+      <p style="font-weight:800;">Chegou até aqui? Então clique no botão:</p>
+      <button class="btn green" id="btnLiMural" onclick="concluirMural()" disabled>✅ Li o cartaz até o fim</button>
+      <p class="menu-desc" id="muralHint" style="margin:0;">O botão acende quando você rolar até o fim do cartaz.</p>
+      <button class="btn yellow" id="btnProntoFinal" onclick="openStep(7)" style="display:none;">🌟 Pronta(o) para o Show Final!</button>
+    </div>
+    <button class="btn ghost small" onclick="go('scr-menu')">⬅️ Voltar para o aquário</button>
+    <div class="rodape">&nbsp;</div>
+  </div>
+</section>
+
+<!-- ============ PÍLULAS ============ -->
+<section class="screen" id="scr-pill">
+  <div class="wrap">
+    <h2 id="pillTitle" style="margin-top:14px;"></h2>
+    <div class="pill-box" id="pillBox"></div>
+    <div class="pill-dots" id="pillDots"></div>
+    <button class="btn yellow" id="pillNext">Entendi! Próximo ➡️</button>
+    <button class="btn ghost small" onclick="go('scr-menu')">⬅️ Voltar para o aquário</button>
+    <div class="rodape">&nbsp;</div>
+  </div>
+</section>
+
+<!-- ============ JOGO ============ -->
+<section class="screen" id="scr-game">
+  <div class="wrap">
+    <h2 id="gameTitle" style="margin-top:14px;"></h2>
+    <div class="q-count" id="gameCount"></div>
+    <div id="gameArea"></div>
+    <div class="fb" id="gameFb"></div>
+    <button class="btn yellow" id="gameNext" style="display:none;">Continuar ➡️</button>
+    <button class="btn ghost small" onclick="go('scr-menu')">⬅️ Voltar para o aquário</button>
+    <div class="rodape">&nbsp;</div>
+  </div>
+</section>
+
+<!-- ============ TANQUE FEITO ============ -->
+<section class="screen" id="scr-won">
+  <div class="wrap">
+    <div class="card" style="text-align:center;">
+      <div class="big">🐚</div>
+      <h2>Tanque completo!</h2>
+      <p id="wonMsg" style="font-weight:800;"></p>
+      <button class="btn yellow" id="wonNext">Próximo tanque ➡️</button>
+      <button class="btn ghost small" onclick="go('scr-menu')">⬅️ Voltar para o aquário</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIM DO SHOW ============ -->
+<section class="screen" id="scr-fim">
+  <div class="wrap">
+    <div class="card" style="text-align:center;">
+      <div class="big">🌟</div>
+      <h2>Show Final concluído!</h2>
+      <p style="font-weight:900;font-size:1.18rem;" id="fimScore"></p>
+      <p id="fimMsg"></p>
+      <div class="code-box" id="fimCode"></div>
+      <p style="font-size:.85rem;font-weight:700;">Mostre este código para um adulto. 😊</p>
+      <button class="btn green" onclick="go('scr-menu')">⬅️ Voltar para o aquário</button>
+      <button class="btn ghost small" onclick="openStep(7)">🔁 Fazer o Show Final de novo</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÁREA DOS PAIS ============ -->
+<section class="screen" id="scr-pais">
+  <div class="wrap">
+    <h1 style="margin-top:14px;">👪 Área dos pais</h1>
+
+    <div class="card blue">
+      <h3>🗓️ Plano de estudo (avaliação na quinta, 26/11)</h3>
+      <p><b>Terça ou quarta à tarde:</b> tanques 1, 2 e 3 (partes do dia, rotina, instrumentos).<br>
+      <b>Quarta à noite:</b> tanques 4, 5 e 6 (Let's e can/can't, números e ímpar/par, float or sink).<br>
+      <b>Quinta antes da escola:</b> só o Cartaz do Aquário lido junto + o Show Final.</p>
+      <p style="font-size:.9rem;"><b>Como funciona:</b> os materiais abrem um por vez, na ordem. Conclua um para destravar o próximo.
+      O progresso fica <b>neste aparelho</b>; para continuar em outro, use 📥 Exportar / 📤 Importar ou a chave dos pais abaixo.</p>
+      <p style="font-size:.9rem;"><b>Sobre o 🔊:</b> como Inglês é língua estrangeira, as palavras têm um botão 🔊 que fala a pronúncia com a voz em inglês do próprio aparelho. Se não sair som, confira o volume (no iPhone, tire do modo silencioso).</p>
+    </div>
+
+    <div class="card">
+      <h3>✏️ Pontos reforçados (vistos nas provas e no caderno)</h3>
+      <ul style="font-weight:700;font-size:.92rem;">
+        <li><b>🚨 Ímpar e par (prova 05/11, questão 6):</b> as cores foram pintadas trocadas. O certo é <b>ODD (ímpar) = BLUE</b> e <b>EVEN (par) = YELLOW</b>. É o ponto mais importante; treinado no tanque 5, com um jogo de pintar igual ao da prova, e no Show Final.</li>
+        <li><b>"Let's play soccer!" (prova 05/11, questão 2):</b> com a figura de futebol, a resposta era <b>✓</b>. Treinado no tanque 4 (olhar a figura antes de marcar).</li>
+        <li><b>Leitura das falas (prova 05/11, questão 4):</b> Emma (I can dance → bailarina) e Sue (I can play the piano → piano) ficaram trocadas. Treinado no tanque 4.</li>
+        <li><b>Frases da rotina (prova 23/09, questão 3):</b> a correção pedia <b>"I play games"</b> e <b>"I have dinner"</b> (foi escrito "I the play games" e "I the dinner"). Treinado no tanque 2.</li>
+        <li><b>Escrita de sun e moon (prova 23/09, questão 4):</b> <b>sun</b> com N e <b>moon</b> com dois O. Treinado no tanque 1.</li>
+        <li><b>Folhas "Can or can't" do caderno:</b> "can" e "can't" escritos como "cam", "camt", "cont"; nomes como guitar, tennis, basketball e skateboard com a escrita errada. Treinado no tanque 4 (inclusive nas caixas de escrita).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📊 Relatório e gabarito</h3>
+      <p style="font-size:.92rem;">Digite o código <b>PAIS-77</b> (fixo da família) ou o código <b>SIM-XX-YY</b> que apareceu no fim do Show Final.</p>
+      <input class="codein" id="paisCode" placeholder="PAIS-77" maxlength="9">
+      <button class="btn small" onclick="abrirRelatorio()">Ver relatório e gabarito</button>
+      <div id="paisTrilha"></div>
+      <div id="paisReport"></div>
+    </div>
+
+    <div class="card">
+      <h3>🔑 Sobre o código SIM-XX-YY</h3>
+      <p style="font-size:.93rem;"><b>XX</b> = quantas questões do Show Final foram acertadas (00 a 10).<br>
+      <b>YY</b> = duas letras fixas deste aparelho. Se mudarem, o material foi zerado.</p>
+    </div>
+
+    <div class="card">
+      <h3>💾 Salvar, passar de aparelho e zerar</h3>
+      <div class="btn-row">
+        <button class="btn small green" onclick="exportar()">📥 Exportar</button>
+        <button class="btn small" onclick="importar()">📤 Importar</button>
+      </div>
+      <textarea id="backupBox" placeholder="O código do backup aparece (ou é colado) aqui."></textarea>
+      <button class="btn small red" onclick="zerar()">🗑️ Zerar tudo</button>
+    </div>
+
+    <button class="btn ghost" onclick="go('scr-menu')">⬅️ Voltar para o aquário</button>
+    <div class="rodape">Fonte: livro Smarty 2 (SM) — Unit 6 "My day!" pp. 72-73, 78-83 e Smarty Mix; Unit 7 "I can play music!" pp. 88-97; Unit 8 "Float or sink?" pp. 102-103; Review pp. 106-107; avaliações corrigidas de 23/09 e 05/11; folhas "Can or can't" do caderno. As traduções em português são só ajuda de leitura. As atividades do livro que dependem do áudio da faixa não viraram questão.</div>
+  </div>
+</section>
+
+<div class="mask" id="mask">
+  <div class="md">
+    <h3 id="mdTitle"></h3>
+    <p id="mdMsg"></p>
+    <button class="btn" id="mdOk">Está bem</button>
+    <button class="btn ghost" id="mdCancel" style="display:none;">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   AQUÁRIO DO POLVO LELÉ — Inglês 2º ano — Colégio São José
+   Fonte ÚNICA: as 30 fotos enviadas pela Ana:
+   bilhete da prova (escopo); Smarty 2 (SM) Unit 6 pp. 72-73,
+   78-83 + Smarty Mix; Unit 7 pp. 88-97; Unit 8 pp. 102-103;
+   Review pp. 106-107; avaliação corrigida de 23/09 (Unit 6);
+   avaliação corrigida de 05/11 (Unit 7); folhas do caderno
+   "Can or can't" (liveworksheets / engworksheets).
+   Atividades que dependem do áudio do livro NÃO viraram questão.
+   🔊 = voz em inglês do próprio aparelho (padrão do kit Sunny's Day).
+   Sem nome de pessoas reais da escola.
+   ========================================================= */
+"use strict";
+
+function vis(html){ return '<div class="vis">'+html+'</div>'; }
+function SAY(w){ return ' <span class="sayw" role="button" tabindex="0" aria-label="ouvir em inglês" data-say="'+String(w).replace(/"/g,'&quot;')+'">🔊</span>'; }
+function CENA(emoji,legenda){ return vis('<div class="cena"><div class="cena-e">'+emoji+'</div><div class="cena-l">'+legenda+'</div></div>'); }
+
+var TITULOS={1:'🌅 Tanque do Dia',2:'⏰ Tanque da Rotina',3:'🎹 Tanque da Música',
+             4:'🙌 Tanque do Let\'s e do Can',5:'🔢 Tanque dos Números',6:'🫧 Tanque Afunda-Boia'};
+var DESC={1:'morning, afternoon, evening, night · sun, moon e stars.',
+          2:'wake up, get up, have breakfast… go to bed. Frases do meu dia.',
+          3:'piano, flute, drums, guitar, tambourine, triangle · sing, dance, listen, play · soft, loud, fast, slow.',
+          4:'Let\'s dance! Yes, let\'s! · I can / I can\'t, escritos certinho. ⭐ Tem escrita.',
+          5:'Números de 1 a 20 · ODD 🔵 e EVEN 🟡 (o ponto mais importante!).',
+          6:'Unit 8: It floats. It sinks. Does it float or sink?'};
+
+var SIMON='<table class="tbl" style="font-size:.85rem;"><tr><th>Quem</th><th>✅ can</th><th>❌ can\'t</th></tr>'+
+ '<tr><td><b>Simon</b></td><td>play basketball · drive</td><td>play the guitar · ride a horse · skateboard</td></tr>'+
+ '<tr><td><b>Sarah</b></td><td>sing · paint · play volleyball</td><td>play the guitar · play the violin · ski</td></tr>'+
+ '<tr><td><b>Rosy e Dave</b></td><td>play tennis · play chess · ride a bike</td><td>swim · ski</td></tr></table>';
+var FALAS='<div class="fotos"><div><b>A</b>🎹 menina no piano</div><div><b>B</b>🎶 menina com flauta</div><div><b>C</b>🩰 bailarina dançando</div><div><b>D</b>🎸 menino com violão</div></div>';
+
+/* =========================================================
+   PÍLULAS DE TEORIA (tudo das fotos)
+   ========================================================= */
+var PILLS={
+1:{t:'🌅 Tanque 1 — Tanque do Dia',p:[
+ {e:'🌅',x:'<b>MORNING</b>'+SAY('morning')+' = manhã',y:'O Sol está nascendo.'},
+ {e:'☀️',x:'<b>AFTERNOON</b>'+SAY('afternoon')+' = tarde',y:'O Sol está bem alto, no céu azul.'},
+ {e:'🌇',x:'<b>EVENING</b>'+SAY('evening')+' = fim de tarde / anoitecer',y:'O Sol está se pondo.'},
+ {e:'🌙 ⭐',x:'<b>NIGHT</b>'+SAY('night')+' = noite',y:'Céu escuro, com a Lua e as estrelas.'},
+ {e:'➡️',x:'A ordem das partes do dia:',y:'morning → afternoon → evening → night'},
+ {e:'☀️',x:'De dia (<b>DAY</b>'+SAY('day')+') aparece <b>THE SUN</b>'+SAY('the sun')+' = o Sol.'},
+ {e:'🌙 ⭐',x:'De noite (<b>NIGHT</b>) aparecem <b>THE MOON</b>'+SAY('the moon')+' = a Lua e <b>THE STARS</b>'+SAY('the stars')+' = as estrelas.'},
+ {e:'☄️',x:'No livro também tem <b>A COMET</b>'+SAY('a comet')+' = um cometa.'},
+ {e:'✍️',x:'Escreva certinho: <b>S - U - N</b> e <b>M - O - O - N</b>',y:'sun termina com N (não "sum") · moon tem dois O (não "mon") ⚠️'},
+ {e:'🧭',x:'<b>IN</b> the morning · <b>IN</b> the afternoon · <b>IN</b> the evening',y:'mas: <b>AT</b> night!'}
+]},
+2:{t:'⏰ Tanque 2 — Tanque da Rotina',p:[
+ {e:'⏰',x:'<b>WAKE UP</b>'+SAY('wake up')+' = acordar',y:'abrir os olhos'},
+ {e:'🛏️',x:'<b>GET UP</b>'+SAY('get up')+' = levantar',y:'sair da cama · "I get up."'},
+ {e:'🥣',x:'<b>HAVE BREAKFAST</b>'+SAY('have breakfast')+' = tomar café da manhã'},
+ {e:'🎒',x:'<b>GO TO SCHOOL</b>'+SAY('go to school')+' = ir para a escola'},
+ {e:'🍽️',x:'<b>HAVE LUNCH</b>'+SAY('have lunch')+' = almoçar'},
+ {e:'🎮',x:'<b>PLAY GAMES</b>'+SAY('play games')+' = brincar / jogar'},
+ {e:'🍝',x:'<b>HAVE DINNER</b>'+SAY('have dinner')+' = jantar'},
+ {e:'😴',x:'<b>GO TO BED</b>'+SAY('go to bed')+' = ir para a cama'},
+ {e:'🥣 🍽️ 🍝',x:'Cada refeição na sua parte do dia:',y:'breakfast → in the morning · lunch → in the afternoon · dinner → in the evening'},
+ {e:'🗣️',x:'Frases do meu dia:',y:'In the morning, I go to school. · In the evening, I have dinner. · At night, I go to bed.'},
+ {e:'⚠️',x:'É <b>"I play games"</b>'+SAY('I play games')+' e <b>"I have dinner"</b>'+SAY('I have dinner')+'.',y:'Nada de "the" no meio: "I the play games" e "I the dinner" estão errados.'}
+]},
+3:{t:'🎹 Tanque 3 — Tanque da Música',p:[
+ {e:'🎶',x:'A Unit 7 se chama <b>"I CAN PLAY MUSIC!"</b>'+SAY('I can play music!'),y:'= Eu sei tocar música!'},
+ {e:'🎹',x:'<b>PIANO</b>'+SAY('piano')+' = piano'},
+ {e:'🎶',x:'<b>FLUTE</b>'+SAY('flute')+' = flauta'},
+ {e:'🥁',x:'<b>DRUMS</b>'+SAY('drums')+' = bateria / tambor',y:'drums termina com S'},
+ {e:'🎸',x:'<b>GUITAR</b>'+SAY('guitar')+' = violão / guitarra'},
+ {e:'🪘',x:'<b>TAMBOURINE</b>'+SAY('tambourine')+' = pandeiro'},
+ {e:'🔺',x:'<b>TRIANGLE</b>'+SAY('triangle')+' = triângulo'},
+ {e:'🎤 💃',x:'<b>SING</b>'+SAY('sing')+' = cantar · <b>DANCE</b>'+SAY('dance')+' = dançar'},
+ {e:'🎧',x:'<b>LISTEN</b>'+SAY('listen')+' = ouvir, escutar',y:'"I can listen to the music." = Eu consigo ouvir a música.'},
+ {e:'🎵',x:'<b>PLAY</b>'+SAY('play')+' = tocar um instrumento (ou jogar, brincar)',y:'Na música do livro: "Let\'s all sing and dance, listen to the music…"'},
+ {e:'🌸 📢',x:'<b>SOFT</b>'+SAY('soft')+' = suave, baixinho · <b>LOUD</b>'+SAY('loud')+' = alto, barulhento'},
+ {e:'🏃 🐢',x:'<b>FAST</b>'+SAY('fast')+' = rápido · <b>SLOW</b>'+SAY('slow')+' = devagar, lento'},
+ {e:'🚄 🥁 🚲 🎶',x:'No livro e na prova:',y:'The train is FAST. · The drum music is LOUD. · The bike is SLOW. · The flute music is SOFT.'}
+]},
+4:{t:'🙌 Tanque 4 — Tanque do Let\'s e do Can',p:[
+ {e:'🙌',x:'<b>LET\'S</b> = <b>VAMOS!</b>',y:'Let\'s dance! = Vamos dançar!'+SAY("Let's dance!")},
+ {e:'🎤 ⚽ 🎹',x:'Mais convites:',y:'Let\'s sing! · Let\'s play soccer! (futebol) · Let\'s play a game! · Let\'s play the piano!'},
+ {e:'😀',x:'Para dizer <b>SIM</b>: <b>"Yes, let\'s!"</b>'+SAY("Yes, let's!"),y:'= Sim, vamos!'},
+ {e:'🙁',x:'Para dizer <b>NÃO</b>: <b>"No, I don\'t want to."</b>'+SAY("No, I don't want to."),y:'= Não, eu não quero.'},
+ {e:'🤝',x:'Para dizer <b>TAMBÉM</b>: "I can play it too!"'+SAY("I can play it too!"),y:'too = também'},
+ {e:'👀',x:'Na prova tem ✓ ou ✗: <b>olhe a figura</b>!',y:'Frase e figura combinam → ✓ · Não combinam → ✗'},
+ {e:'⚽ ✓',x:'"Let\'s play soccer!" + figura de alguém jogando futebol = <b>✓ combina!</b>',y:'Na prova de novembro foi marcado ✗. Cuidado! ⚠️'},
+ {e:'🎤 ✗',x:'"She can dance." + menina <b>cantando</b> no microfone = <b>✗</b>',y:'Ela está cantando (sing), não dançando.'},
+ {e:'💪',x:'<b>CAN</b> = sei, consigo, posso',y:'I can play the guitar.'+SAY('I can play the guitar.')},
+ {e:'🚫',x:'<b>CAN\'T</b> = não sei, não consigo',y:'I can\'t sing.'+SAY("I can't sing.")},
+ {e:'✍️',x:'Escreva certinho: <b>C - A - N</b> e <b>C - A - N - \' - T</b>',y:'Nada de "cam", "camt" ou "cont"! ⚠️'},
+ {e:'🔤',x:'Ordem: <b>QUEM + can / can\'t + AÇÃO</b>',y:'Sarah can\'t play the violin.'},
+ {e:'🎸 🎾',x:'<b>PLAY THE</b> + instrumento: play the guitar · play the piano',y:'<b>PLAY</b> + esporte, sem "the": play tennis · play basketball · play soccer'},
+ {e:'✍️',x:'Nomes para escrever certinho:',y:'guitar · tennis · basketball · skateboard · violin · piano'},
+ {e:FALAS,x:'Leia a fala e ache a figura:',y:'Tom: guitar → D · Lisa: flute → B · Emma: dance → C · Sue: piano → A'}
+]},
+5:{t:'🔢 Tanque 5 — Tanque dos Números',p:[
+ {e:'1️⃣ ➡️ 5️⃣',x:'1 one'+SAY('one')+' · 2 two'+SAY('two')+' · 3 three'+SAY('three')+' · 4 four'+SAY('four')+' · 5 five'+SAY('five')},
+ {e:'6️⃣ ➡️ 🔟',x:'6 six'+SAY('six')+' · 7 seven'+SAY('seven')+' · 8 eight'+SAY('eight')+' · 9 nine'+SAY('nine')+' · 10 ten'+SAY('ten')},
+ {e:'🔢',x:'11 eleven'+SAY('eleven')+' · 12 twelve'+SAY('twelve')+' · 13 thirteen'+SAY('thirteen')+' · 14 fourteen'+SAY('fourteen')+' · 15 fifteen'+SAY('fifteen')},
+ {e:'🔢',x:'16 sixteen'+SAY('sixteen')+' · 17 seventeen'+SAY('seventeen')+' · 18 eighteen'+SAY('eighteen')+' · 19 nineteen'+SAY('nineteen')+' · 20 twenty'+SAY('twenty')},
+ {e:'🔵',x:'<b>ODD</b>'+SAY('odd')+' = <b>ÍMPAR</b>',y:'1 · 3 · 5 · 7 · 9 · 11 · 13 · 15 · 17 · 19'},
+ {e:'🟡',x:'<b>EVEN</b>'+SAY('even')+' = <b>PAR</b>',y:'2 · 4 · 6 · 8 · 10 · 12 · 14 · 16 · 18 · 20'},
+ {e:'💡',x:'Truque: termina em <b>0, 2, 4, 6 ou 8</b> → EVEN (par).',y:'Termina em 1, 3, 5, 7 ou 9 → ODD (ímpar).'},
+ {e:'🎨',x:'A prova pediu: <b>"Color the ODD numbers with BLUE and EVEN numbers with YELLOW."</b>',y:'ODD → 🔵 BLUE (azul) · EVEN → 🟡 YELLOW (amarelo)'},
+ {e:'🚨',x:'Na prova de novembro as cores foram <b>trocadas</b>.',y:'Antes de pintar, leia de novo: ODD = BLUE · EVEN = YELLOW.'}
+]},
+6:{t:'🫧 Tanque 6 — Tanque Afunda-Boia',p:[
+ {e:'🫧',x:'A Unit 8 se chama <b>"FLOAT OR SINK?"</b>'+SAY('Float or sink?'),y:'= Boia ou afunda?'},
+ {e:'🛟',x:'<b>IT FLOATS.</b>'+SAY('It floats.')+' = Ele boia.',y:'Fica em cima da água.'},
+ {e:'⚓',x:'<b>IT SINKS.</b>'+SAY('It sinks.')+' = Ele afunda.',y:'Vai para o fundo.'},
+ {e:'🪵 🪨',x:'No copo d\'água do livro:',y:'a rolha fica em cima → It floats. · a pedra vai para o fundo → It sinks.'},
+ {e:'✏️ 🏐 📎',x:'No cartaz das crianças do livro:',y:'IT FLOATS: o lápis e a bola · IT SINKS: o clipe'},
+ {e:'❓',x:'<b>"Does it float or sink?"</b>'+SAY('Does it float or sink?'),y:'= Ele boia ou afunda?'},
+ {e:'💭',x:'<b>"I think it floats."</b>'+SAY('I think it floats.'),y:'= Eu acho que ele boia.'},
+ {e:'🥣',x:'Para fazer o teste: uma tigela ou balde (bowl, bucket), água (water) e os objetos.'}
+]}
+};
+
+/* =========================================================
+   MINIJOGOS (c = índice da certa ANTES de embaralhar)
+   ========================================================= */
+var CK=['✅ Combina (✓)','❌ Não combina (✗)'];
+var VF=['✅ True (T)','❌ False (F)'];
+var JOGO={
+1:[
+ {t:'mc',p:'🌅 O Sol está <b>nascendo</b>. Que parte do dia é?',vis:CENA('🌅','Sol nascendo atrás do morro'),o:['morning','afternoon','evening','night'],c:0,ex:{1:'Afternoon é a tarde, com o Sol bem alto.',2:'Evening é quando o Sol se põe.',3:'Night é a noite, com Lua e estrelas.'},bom:'Sol nascendo = morning (manhã).'},
+ {t:'mc',p:'☀️ O Sol está <b>bem alto</b> no céu azul. Que parte do dia é?',vis:CENA('☀️','Sol bem alto, céu azul'),o:['afternoon','night','morning','evening'],c:0,ex:{1:'De noite não tem Sol no céu.',2:'De manhã o Sol está nascendo.',3:'No evening o Sol está se pondo.'},bom:'Sol bem alto = afternoon (tarde).'},
+ {t:'mc',p:'🌇 O Sol está <b>se pondo</b>. Que parte do dia é?',vis:CENA('🌇','Sol se pondo'),o:['evening','morning','afternoon','night'],c:0,ex:{1:'Morning é quando o Sol nasce.',2:'Afternoon é o Sol bem alto.',3:'Night já é escuro, com Lua e estrelas.'},bom:'Sol se pondo = evening (fim de tarde / anoitecer).'},
+ {t:'mc',p:'🌙 Céu escuro com <b>Lua e estrelas</b>. Que parte do dia é?',vis:CENA('🌙⭐','Lua e estrelas'),o:['night','afternoon','morning','evening'],c:0,ex:{1:'De tarde o céu é azul, com Sol.',2:'De manhã o Sol nasce.',3:'No evening o Sol ainda está se pondo.'},bom:'Lua e estrelas = night (noite).'},
+ {t:'grp',p:'Separe: aparece de <b>DIA</b> ou de <b>NOITE</b>?',grupos:['☀️ DAY','🌙 NIGHT'],
+  itens:[{e:'☀️',n:'the sun',g:0,d:'The sun (o Sol) aparece de dia.'},
+         {e:'🌙',n:'the moon',g:1,d:'The moon (a Lua) aparece de noite.'},
+         {e:'⭐',n:'the stars',g:1,d:'The stars (as estrelas) aparecem de noite.'},
+         {e:'🌅',n:'morning',g:0,d:'Morning (manhã) é de dia.'},
+         {e:'🌌',n:'night',g:1,d:'Night é a noite.'}],
+  bom:'DAY: the sun, morning · NIGHT: the moon, the stars.'},
+ {t:'mc',p:'✍️ Qual está escrito <b>CERTO</b>? (a Lua)',o:['moon','mon','mun','moom'],c:0,ex:{1:'Falta um O: M-O-O-N.',2:'É com O, não com U.',3:'Termina com N: M-O-O-N.'},bom:'M-O-O-N, com dois O.'},
+ {t:'mc',p:'✍️ Qual está escrito <b>CERTO</b>? (o Sol)',o:['sun','sum','sunn','san'],c:0,ex:{1:'"sum" está errado: sun termina com N.',2:'Só um N: S-U-N.',3:'É com U: S-U-N.'},bom:'S-U-N.'},
+ {t:'mc',p:'<b>THE STARS</b> quer dizer:',o:['as estrelas','a Lua','o Sol','um cometa'],c:0,ex:{1:'A Lua é the moon.',2:'O Sol é the sun.',3:'Um cometa é a comet.'},bom:'The stars = as estrelas.'},
+ {t:'mc',p:'Qual parte do dia vem <b>depois</b> de AFTERNOON?',o:['evening','morning','night','afternoon'],c:0,ex:{1:'Morning vem antes, é a primeira.',2:'Night vem depois do evening.',3:'É a mesma, procure a próxima.'},bom:'morning → afternoon → <b>evening</b> → night.'},
+ {t:'mc',p:'Complete: "___ night, I go to bed." 😴',o:['At','In','On','To'],c:0,ex:{1:'IN é para in the morning, in the afternoon e in the evening.',2:'Não usamos "on" aqui.',3:'Não usamos "to" aqui.'},bom:'<b>At</b> night!'}
+],
+2:[
+ {t:'mc',p:'⏰ <b>WAKE UP</b> quer dizer:',o:['acordar','levantar','almoçar','jantar'],c:0,ex:{1:'Levantar é get up.',2:'Almoçar é have lunch.',3:'Jantar é have dinner.'},bom:'Wake up = acordar.'},
+ {t:'mc',p:'🛏️ Qual é <b>LEVANTAR</b> (sair da cama)?',o:['get up','wake up','go to bed','go to school'],c:0,ex:{1:'Wake up é acordar.',2:'Go to bed é ir para a cama.',3:'Go to school é ir para a escola.'},bom:'Get up = levantar.'},
+ {t:'mc',p:'🍝 <b>HAVE DINNER</b> quer dizer:',o:['jantar','almoçar','tomar café da manhã','brincar'],c:0,ex:{1:'Almoçar é have lunch.',2:'Café da manhã é have breakfast.',3:'Brincar é play games.'},bom:'Have dinner = jantar.'},
+ {t:'mc',p:'🍽️ Como se diz <b>ALMOÇAR</b>?',o:['have lunch','have dinner','have breakfast','play games'],c:0,ex:{1:'Have dinner é jantar.',2:'Have breakfast é café da manhã.',3:'Play games é brincar.'},bom:'Almoçar = have lunch.'},
+ {t:'grp',p:'Em que parte do dia? Coloque cada ação no lugar:',grupos:['🌅 morning','☀️ afternoon','🌇 evening','🌙 night'],
+  itens:[{e:'🥣',n:'have breakfast',g:0,d:'Breakfast (café da manhã) é in the morning.'},
+         {e:'🎒',n:'go to school',g:0,d:'In the morning, I go to school.'},
+         {e:'🍽️',n:'have lunch',g:1,d:'Lunch (almoço) é in the afternoon.'},
+         {e:'🍝',n:'have dinner',g:2,d:'In the evening, I have dinner.'},
+         {e:'😴',n:'go to bed',g:3,d:'At night, I go to bed.'}],
+  bom:'breakfast e school → morning · lunch → afternoon · dinner → evening · bed → night.'},
+ {t:'duo',p:'✓ ou ✗? Olhe a figura:',vis:CENA('👦🎒🏫','menino com mochila indo para a escola')+'<div class="frase">"In the morning, I go to school."'+SAY('In the morning, I go to school.')+'</div>',o:CK,c:0,bom:'✓ Combina! Mochila e escola = go to school.'},
+ {t:'duo',p:'✓ ou ✗? Olhe a figura:',vis:CENA('👧👦⚽🌳','crianças jogando bola no parque')+'<div class="frase">"In the afternoon, I have dinner."</div>',o:CK,c:1,bom:'✗ Não combina: as crianças estão brincando. O certo é "In the afternoon, I <b>play games</b>."'},
+ {t:'mc',p:'👧👦⚽ Crianças jogando bola. Complete: "In the afternoon, I ___."',o:['play games','have dinner','go to bed','wake up'],c:0,ex:{1:'Have dinner é jantar; elas estão brincando.',2:'Go to bed é ir dormir.',3:'Wake up é acordar.'},bom:'In the afternoon, I play games.'},
+ {t:'mc',p:'👨‍👩‍👧🍽️ Família comendo na mesa. Complete: "In the evening, I ___."',o:['have dinner','play games','go to school','get up'],c:0,ex:{1:'Eles estão comendo, não brincando.',2:'De noitinha não vamos para a escola.',3:'Get up é levantar da cama.'},bom:'In the evening, I have dinner.'},
+ {t:'mc',p:'Qual frase está <b>certinha</b>?',o:['I play games.','I the play games.','I games play.'],c:0,ex:{1:'Não tem "the" no meio.',2:'A ordem está trocada.'},bom:'I play games.'},
+ {t:'mc',p:'Qual frase está <b>certinha</b>?',o:['I have dinner.','I the dinner.','I dinner have.'],c:0,ex:{1:'Faltou o HAVE e sobrou o "the".',2:'A ordem está trocada.'},bom:'I have dinner.'},
+ {t:'ord',p:'Monte a frase:',w:['In the evening,','I','have','dinner.'],bom:'In the evening, I have dinner.'},
+ {t:'ord',p:'Monte a frase:',w:['At night,','I','go','to','bed.'],bom:'At night, I go to bed.'}
+],
+3:[
+ {t:'grp',p:'Separe: é um <b>instrumento</b> ou uma <b>ação</b>?',grupos:['🎵 Instrumento','🕺 Ação'],
+  itens:[{e:'🎹',n:'piano',g:0,d:'Piano é instrumento.'},
+         {e:'🎤',n:'sing',g:1,d:'Sing = cantar, é ação.'},
+         {e:'🪘',n:'tambourine',g:0,d:'Tambourine (pandeiro) é instrumento.'},
+         {e:'💃',n:'dance',g:1,d:'Dance = dançar, é ação.'},
+         {e:'🔺',n:'triangle',g:0,d:'Triangle (triângulo) é instrumento.'},
+         {e:'🎧',n:'listen',g:1,d:'Listen = ouvir, é ação.'}],
+  bom:'Instrumentos: piano, tambourine, triangle. Ações: sing, dance, listen.'},
+ {t:'mc',p:'🪘 Como se diz <b>PANDEIRO</b>?',o:['tambourine','triangle','drums','flute'],c:0,ex:{1:'Triangle é triângulo.',2:'Drums é bateria.',3:'Flute é flauta.'},bom:'Pandeiro = tambourine.'},
+ {t:'mc',p:'🔺 <b>TRIANGLE</b> é:',o:['triângulo','pandeiro','flauta','piano'],c:0,ex:{1:'Pandeiro é tambourine.',2:'Flauta é flute.',3:'Piano é piano.'},bom:'Triangle = triângulo.'},
+ {t:'mc',p:'🥁 Como se diz <b>BATERIA</b>?',o:['drums','guitar','piano','flute'],c:0,ex:{1:'Guitar é violão.',2:'Piano é piano.',3:'Flute é flauta.'},bom:'Bateria = drums.'},
+ {t:'mc',p:'🎶 A menina toca flauta. "I can play the ___."',o:['flute','ballet','drums','piano'],c:0,ex:{1:'Ballet é dança, não é instrumento.',2:'Drums é bateria.',3:'Piano é piano.'},bom:'I can play the flute.'},
+ {t:'mc',p:'🎧 Fone de ouvido. "I can ___ to the music."',o:['listen','sing','dance','play'],c:0,ex:{1:'Sing é cantar.',2:'Dance é dançar.',3:'Play é tocar.'},bom:'I can listen to the music. (ouvir a música)'},
+ {t:'mc',p:'🚄 "The train is ___."',o:['fast','slow','soft','loud'],c:0,ex:{1:'O trem do livro é rápido, não devagar.',2:'Soft é suave, para som.',3:'Loud é barulhento, para som.'},bom:'The train is fast. (rápido)'},
+ {t:'mc',p:'🚲 "The bike is ___."',o:['slow','fast','loud','soft'],c:0,ex:{1:'No livro e na prova, a bike é a lenta.',2:'Loud é barulhento.',3:'Soft é suave.'},bom:'The bike is slow. (devagar)'},
+ {t:'mc',p:'🥁 "The drum music is ___."',o:['loud','soft','slow','fast'],c:0,ex:{1:'Soft é a flauta, baixinho.',2:'Slow é devagar.',3:'Fast é rápido.'},bom:'The drum music is loud. (alta, barulhenta)'},
+ {t:'mc',p:'🎶 "The flute music is ___."',o:['soft','loud','fast','slow'],c:0,ex:{1:'Loud é a bateria.',2:'Fast é o trem.',3:'Slow é a bike.'},bom:'The flute music is soft. (suave)'},
+ {t:'mc',p:'<b>LOUD</b> quer dizer:',o:['alto, barulhento','baixinho','rápido','devagar'],c:0,ex:{1:'Baixinho é soft.',2:'Rápido é fast.',3:'Devagar é slow.'},bom:'Loud = alto, barulhento.'}
+],
+4:[
+ {t:'duo',p:'✓ ou ✗? Olhe a figura:',vis:CENA('🧒⚽','menina chutando uma bola de futebol')+'<div class="frase">"Let\'s play soccer!"'+SAY("Let's play soccer!")+'</div>',o:CK,c:0,bom:'✓ Combina! Soccer = futebol. (Na prova de novembro foi marcado ✗ — cuidado!)'},
+ {t:'duo',p:'✓ ou ✗? Olhe a figura:',vis:CENA('👧🎤','menina cantando no microfone')+'<div class="frase">"She can dance."</div>',o:CK,c:1,bom:'✗ Ela está cantando: "She can <b>sing</b>."'},
+ {t:'duo',p:'✓ ou ✗? Olhe a figura:',vis:CENA('🎧🎵','fone de ouvido com notas musicais')+'<div class="frase">"I can listen to the music."</div>',o:CK,c:0,bom:'✓ Combina! Listen = ouvir.'},
+ {t:'mc',p:'Seu amigo diz "Let\'s dance!" e você <b>QUER</b>. Responda:',o:['Yes, let\'s!','No, I don\'t want to.','I can\'t sing.'],c:0,ex:{1:'Isso é dizer que não quer.',2:'Isso fala de cantar, não responde ao convite.'},bom:'Yes, let\'s! = Sim, vamos!'},
+ {t:'mc',p:'Seu amigo diz "Let\'s play a game!" e você <b>NÃO</b> quer. Responda:',o:['No, I don\'t want to.','Yes, let\'s!','Let\'s sing!'],c:0,ex:{1:'Isso é dizer sim.',2:'Isso é outro convite.'},bom:'No, I don\'t want to. = Não, eu não quero.'},
+ {t:'mc',p:'<b>LET\'S</b> quer dizer:',o:['Vamos','Eu sei','Eu não quero','Também'],c:0,ex:{1:'Eu sei é "I can".',2:'Eu não quero é "I don\'t want to".',3:'Também é "too".'},bom:'Let\'s = vamos!'},
+ {t:'mc',p:'✍️ Qual está escrito <b>CERTO</b>?',o:['can','cam','com','cann'],c:0,ex:{1:'"cam" está errado: CAN termina com N.',2:'"com" está errado: é C-A-N.',3:'Só um N.'},bom:'C-A-N.'},
+ {t:'mc',p:'✍️ Qual está escrito <b>CERTO</b>?',o:['can\'t','camt','cont','cant\''],c:0,ex:{1:'É com N: can\'t.',2:'É C-A-N, não C-O-N.',3:'O apóstrofo vai antes do T.'},bom:'C-A-N-\'-T.'},
+ {t:'mc',p:'✍️ Qual está escrito <b>CERTO</b>? 🎸',o:['guitar','gutar','gatar','guitor'],c:0,ex:{1:'Falta o I: G-U-I-T-A-R.',2:'É G-U-I-T-A-R.',3:'Termina com AR: guitar.'},bom:'G-U-I-T-A-R.'},
+ {t:'mc',p:'✍️ Qual está escrito <b>CERTO</b>? 🎾',o:['tennis','tenis','tenns','tennes'],c:0,ex:{1:'Tennis tem dois N.',2:'Faltou o I: T-E-N-N-I-S.',3:'É T-E-N-N-I-S.'},bom:'T-E-N-N-I-S.'},
+ {t:'mc',p:'Leia: "Hi, I\'m Emma. I can <b>dance</b>." Qual é a figura da Emma?',vis:vis(FALAS),o:['C — bailarina dançando','A — menina no piano','B — menina com flauta','D — menino com violão'],c:0,ex:{1:'Essa é a Sue: I can play the piano.',2:'Essa é a Lisa: I can play the flute.',3:'Esse é o Tom: I can play the guitar.'},bom:'Dance = dançar → a bailarina (C).'},
+ {t:'mc',p:'Leia: "Hi, I\'m Sue. I can play the <b>piano</b>." Qual é a figura da Sue?',vis:vis(FALAS),o:['A — menina no piano','C — bailarina dançando','B — menina com flauta','D — menino com violão'],c:0,ex:{1:'Essa é a Emma: I can dance.',2:'Essa é a Lisa: flute.',3:'Esse é o Tom: guitar.'},bom:'Piano → figura A.'},
+ {t:'mc',p:'Olhe o quadro: <b>Can Simon play basketball?</b> 🏀',vis:SIMON,o:['can','can\'t'],c:0,ex:{1:'Simon tem ✅ no basquete.'},bom:'Simon can play basketball.'},
+ {t:'mc',p:'Olhe o quadro e complete: "Sarah ___ play the violin." 🎻',vis:SIMON,o:['can\'t','can'],c:0,ex:{1:'Sarah tem ❌ no violino.'},bom:'Sarah can\'t play the violin.'},
+ {t:'ord',p:'Monte a frase:',w:['I','can','play','the','guitar.'],bom:'I can play the guitar.'},
+ {t:'esc',id:'eu_can',tit:'✏️ O que você SABE fazer?',
+  enun:'Escreva 2 frases sobre você começando com I can. Use as palavras que você aprendeu: sing, dance, play the piano, play the guitar, play soccer...',
+  modelo:'I can sing.<br>I can play the piano.',
+  chk:['Minhas frases começam com <b>I can</b>?','Escrevi <b>can</b> com N no final (e não "cam")?','Depois do can coloquei uma <b>ação em inglês</b> (sing, dance, play the…)?']},
+ {t:'esc',id:'eu_cant',tit:'✏️ O que você NÃO sabe fazer?',
+  enun:'Agora escreva 2 frases sobre você começando com I can\'t.',
+  modelo:'I can\'t play the drums.<br>I can\'t play the flute.',
+  chk:['Minhas frases começam com <b>I can\'t</b>?','Escrevi <b>can\'t</b> com o apóstrofo e o T (e não "camt" ou "cont")?','Escrevi o nome do instrumento ou da ação certinho (guitar, piano, drums, flute…)?']}
+],
+5:[
+ {t:'mc',p:'<b>7</b> em inglês é:',o:['seven','six','eleven','seventeen'],c:0,ex:{1:'Six é 6.',2:'Eleven é 11.',3:'Seventeen é 17.'},bom:'7 = seven.'},
+ {t:'mc',p:'🎹🎹🎹 Quantos pianos? Escolha a palavra:',o:['three','thirteen','two','twenty'],c:0,ex:{1:'Thirteen é 13.',2:'Two é 2.',3:'Twenty é 20.'},bom:'3 = three.'},
+ {t:'mc',p:'🥁 São <b>12</b> tambores. Escolha a palavra:',o:['twelve','twenty','eleven','two'],c:0,ex:{1:'Twenty é 20.',2:'Eleven é 11.',3:'Two é 2.'},bom:'12 = twelve.'},
+ {t:'mc',p:'🎶 São <b>20</b> flautas. Escolha a palavra:',o:['twenty','twelve','two','ten'],c:0,ex:{1:'Twelve é 12.',2:'Two é 2.',3:'Ten é 10.'},bom:'20 = twenty.'},
+ {t:'mc',p:'<b>FIFTEEN</b> é o número:',o:['15','50','5','14'],c:0,ex:{1:'50 não está na lista de 1 a 20.',2:'5 é five.',3:'14 é fourteen.'},bom:'Fifteen = 15.'},
+ {t:'mc',p:'<b>ODD</b> quer dizer:',o:['ímpar','par','azul','amarelo'],c:0,ex:{1:'Par é even.',2:'Azul é blue.',3:'Amarelo é yellow.'},bom:'Odd = ímpar.'},
+ {t:'mc',p:'<b>EVEN</b> quer dizer:',o:['par','ímpar','vinte','amarelo'],c:0,ex:{1:'Ímpar é odd.',2:'Vinte é twenty.',3:'Amarelo é yellow.'},bom:'Even = par.'},
+ {t:'grp',p:'Separe os números: <b>ODD</b> (ímpar) ou <b>EVEN</b> (par)?',grupos:['🔵 ODD (ímpar)','🟡 EVEN (par)'],
+  itens:[{e:'3',n:'three',g:0,d:'3 termina em 3: é ímpar (odd).'},
+         {e:'8',n:'eight',g:1,d:'8 é par (even).'},
+         {e:'15',n:'fifteen',g:0,d:'15 termina em 5: é ímpar (odd).'},
+         {e:'12',n:'twelve',g:1,d:'12 termina em 2: é par (even).'},
+         {e:'7',n:'seven',g:0,d:'7 é ímpar (odd).'},
+         {e:'20',n:'twenty',g:1,d:'20 termina em 0: é par (even).'},
+         {e:'19',n:'nineteen',g:0,d:'19 termina em 9: é ímpar (odd).'},
+         {e:'4',n:'four',g:1,d:'4 é par (even).'}],
+  bom:'ODD: 3, 7, 15, 19 · EVEN: 4, 8, 12, 20.'},
+ {t:'mc',p:'🎨 "Color the <b>ODD</b> numbers with ___." (igual à prova)',o:['BLUE 🔵','YELLOW 🟡'],c:0,fixo:true,ex:{1:'Yellow é para os EVEN. Na prova as cores foram trocadas: ODD = BLUE!'},bom:'ODD → BLUE (azul).'},
+ {t:'mc',p:'🎨 "Color the <b>EVEN</b> numbers with ___." (igual à prova)',o:['BLUE 🔵','YELLOW 🟡'],c:1,fixo:true,ex:{0:'Blue é para os ODD. EVEN = YELLOW!'},bom:'EVEN → YELLOW (amarelo).'},
+ {t:'cor',p:'🍎 Igual à prova: <b>"Color the ODD numbers with BLUE and EVEN numbers with YELLOW."</b><br>Escolha a tinta e toque em cada maçã.',nums:[3,2,1,5,4,12,14,15,11,13,6,8,7,9,10,17,19,16,18,20],bom:'ODD (1, 3, 5, 7, 9, 11, 13, 15, 17, 19) = BLUE · EVEN (2, 4, 6, 8, 10, 12, 14, 16, 18, 20) = YELLOW.'},
+ {t:'mc',p:'Qual destes é <b>ODD</b> (ímpar)?',o:['13','14','16','20'],c:0,ex:{1:'14 termina em 4: é par.',2:'16 termina em 6: é par.',3:'20 termina em 0: é par.'},bom:'13 termina em 3 → ODD.'},
+ {t:'mc',p:'Qual destes é <b>EVEN</b> (par)?',o:['18','11','17','9'],c:0,ex:{1:'11 termina em 1: é ímpar.',2:'17 termina em 7: é ímpar.',3:'9 é ímpar.'},bom:'18 termina em 8 → EVEN.'}
+],
+6:[
+ {t:'mc',p:'<b>IT FLOATS</b> quer dizer:',o:['Ele boia.','Ele afunda.','Ele voa.','Ele canta.'],c:0,ex:{1:'Afunda é "it sinks".',2:'Voar não é desta unidade.',3:'Cantar é sing.'},bom:'It floats = ele boia.'},
+ {t:'mc',p:'<b>IT SINKS</b> quer dizer:',o:['Ele afunda.','Ele boia.','Ele dança.','Ele toca.'],c:0,ex:{1:'Boia é "it floats".',2:'Dançar é dance.',3:'Tocar é play.'},bom:'It sinks = ele afunda.'},
+ {t:'mc',p:'🪵 No copo d\'água do livro, a <b>rolha</b> fica em cima da água. Ela:',vis:CENA('🥛🪵','rolha boiando no copo'),o:['It floats.','It sinks.'],c:0,ex:{1:'Ela fica em cima, então não afunda.'},bom:'A rolha boia: it floats.'},
+ {t:'mc',p:'🪨 No mesmo copo, a <b>pedra</b> está no fundo. Ela:',vis:CENA('🥛🪨','pedra no fundo do copo'),o:['It sinks.','It floats.'],c:0,ex:{1:'Ela está no fundo, então afundou.'},bom:'A pedra afunda: it sinks.'},
+ {t:'grp',p:'Pelo livro: o objeto <b>boia</b> ou <b>afunda</b>?',grupos:['🛟 IT FLOATS','⚓ IT SINKS'],
+  itens:[{e:'🪵',n:'a rolha',g:0,d:'A rolha fica em cima da água.'},
+         {e:'🪨',n:'a pedra',g:1,d:'A pedra vai para o fundo.'},
+         {e:'✏️',n:'o lápis',g:0,d:'No cartaz do livro, o lápis está em IT FLOATS.'},
+         {e:'📎',n:'o clipe',g:1,d:'No cartaz do livro, o clipe está em IT SINKS.'},
+         {e:'🏐',n:'a bola',g:0,d:'No cartaz do livro, a bola está em IT FLOATS.'}],
+  bom:'FLOATS: rolha, lápis, bola · SINKS: pedra, clipe.'},
+ {t:'mc',p:'"<b>Does it float or sink?</b>" quer dizer:',o:['Ele boia ou afunda?','Eu acho que ele boia.','Vamos nadar!','Ele sabe tocar?'],c:0,ex:{1:'Isso é "I think it floats."',2:'Isso não é desta unidade.',3:'Isso seria "Can he play?".'},bom:'Does it float or sink? = Ele boia ou afunda?'},
+ {t:'mc',p:'"<b>I think it floats.</b>" quer dizer:',o:['Eu acho que ele boia.','Ele afunda.','Ele boia ou afunda?','Eu não quero.'],c:0,ex:{1:'Afunda é sinks.',2:'Isso é a pergunta.',3:'Isso é "I don\'t want to".'},bom:'I think = eu acho.'},
+ {t:'mc',p:'<b>SINK</b> é o contrário de:',o:['float','fast','sing','soft'],c:0,ex:{1:'Fast é rápido.',2:'Sing é cantar (cuidado: parece sink!).',3:'Soft é suave.'},bom:'sink (afundar) × float (boiar).'},
+ {t:'duo',p:'True or false?<div class="frase">"No cartaz do livro, o clipe 📎 está em IT FLOATS."</div>',o:VF,c:1,bom:'False! O clipe está em IT SINKS (afunda).'}
+]
+};
+
+/* --- Show Final (10 questões) --- */
+var FINAL=[
+ {p:'🌇 O Sol está <b>se pondo</b>. Que parte do dia é?',o:['evening','morning','afternoon','night'],c:0,ex:{1:'Morning é o Sol nascendo.',2:'Afternoon é o Sol bem alto.',3:'Night é Lua e estrelas.'}},
+ {p:'✍️ Qual está escrito certo? (a Lua 🌙)',o:['moon','mon','mun','moom'],c:0,ex:{1:'Faltou um O.',2:'É com O: moon.',3:'Termina com N.'}},
+ {p:'👨‍👩‍👧🍽️ Família comendo na mesa. "In the evening, I ___."',o:['have dinner','play games','go to school','wake up'],c:0,ex:{1:'Eles estão comendo, não brincando.',2:'De noitinha não vamos à escola.',3:'Wake up é acordar.'}},
+ {p:'🪘 <b>TAMBOURINE</b> é:',o:['pandeiro','triângulo','flauta','bateria'],c:0,ex:{1:'Triângulo é triangle.',2:'Flauta é flute.',3:'Bateria é drums.'}},
+ {p:'🚄 "The train is ___."',o:['fast','slow','soft','loud'],c:0,ex:{1:'Slow é a bike.',2:'Soft é a flauta.',3:'Loud é a bateria.'}},
+ {p:'🧒⚽ Figura: menina chutando bola de futebol. Frase: "Let\'s play soccer!" Combina?',o:['✓ Sim, combina','✗ Não combina'],c:0,fixo:true,ex:{1:'Soccer é futebol, e a figura é de futebol: combina!'}},
+ {p:'🎨 "Color the ODD numbers with BLUE." Qual número fica <b>AZUL</b>?',o:['7','8','12','20'],c:0,ex:{1:'8 é par (even): fica amarelo.',2:'12 é par (even): fica amarelo.',3:'20 é par (even): fica amarelo.'}},
+ {p:'🎨 "Color the EVEN numbers with YELLOW." Qual número fica <b>AMARELO</b>?',o:['14','9','15','3'],c:0,ex:{1:'9 é ímpar (odd): fica azul.',2:'15 é ímpar (odd): fica azul.',3:'3 é ímpar (odd): fica azul.'}},
+ {p:'✍️ Qual está escrito certo?',o:['can\'t','camt','cont','cam\'t'],c:0,ex:{1:'É com N e com apóstrofo.',2:'É C-A-N, não C-O-N.',3:'É com N: can\'t.'}},
+ {p:'🪨 A pedra foi para o fundo da água:',o:['It sinks.','It floats.'],c:0,ex:{1:'Floats seria ficar em cima da água.'}}
+];
+var SEMENTE="aq14"; /* escolhida no teste: certas espalhadas em A, B, C e D */
+
+
+/* =========================================================
+   ARMAZENAMENTO (à prova de bloqueio)
+   ========================================================= */
+var KEY='aquario_polvo_2ano_v1';
+var TKEY='aquario_polvo_2ano_trilha_v1';
+var MEM={};
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return MEM[k]||null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){ MEM[k]=v; } }
+function lsDel(k){ try{ localStorage.removeItem(k); }catch(e){} delete MEM[k]; }
+function letras(){ var L='ABCDEFGHJKLMNPQRSTUVWXYZ'; return L[Math.floor(Math.random()*L.length)]+L[Math.floor(Math.random()*L.length)]; }
+function novoEstado(){
+  return { fases:{}, escrita:{}, mural:{concluido:false,maxPct:0},
+           finalScore:null, finalCode:null, finalDet:null, finalConc:false, finalEm:null,
+           codeLetters:null, quando:null };
+}
+function arrumar(o){
+  if(!o.fases)o.fases={}; if(!o.escrita)o.escrita={};
+  if(!o.mural)o.mural={concluido:false,maxPct:0};
+  if(!o.codeLetters)o.codeLetters=letras();
+  return o;
+}
+var S=novoEstado(), T={liberadoPelosPais:false,liberadoEm:null};
+(function carregar(){
+  var raw=lsGet(KEY);
+  if(raw){ try{ var o=JSON.parse(raw); if(o&&typeof o==='object') S=o; }catch(e){} }
+  arrumar(S);
+  var rt=lsGet(TKEY);
+  if(rt){ try{ var t=JSON.parse(rt); if(t&&typeof t==='object') T=t; }catch(e){} }
+})();
+function save(){
+  S.quando=new Date().toLocaleString('pt-BR');
+  lsSet(KEY,JSON.stringify(S));
+  var el=document.getElementById('saveInfo');
+  if(el) el.textContent='Progresso salvo automaticamente · '+S.quando;
+}
+function saveT(){ lsSet(TKEY,JSON.stringify(T)); }
+
+/* =========================================================
+   UTILIDADES (🔊 pronúncia em inglês + bip curtinho)
+   ========================================================= */
+var _vozes=[];
+function carregarVozes(){ try{ _vozes=window.speechSynthesis.getVoices()||[]; }catch(e){ _vozes=[]; } }
+try{ if('speechSynthesis' in window){ carregarVozes(); window.speechSynthesis.onvoiceschanged=carregarVozes; } }catch(e){}
+function speak(txt){
+  try{
+    if(!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(txt); u.lang='en-US'; u.rate=0.85;
+    if(!_vozes.length) carregarVozes();
+    var v=null, i; for(i=0;i<_vozes.length;i++){ if(/en[-_]US/i.test(_vozes[i].lang)){ v=_vozes[i]; break; } }
+    if(!v){ for(i=0;i<_vozes.length;i++){ if(/^en/i.test(_vozes[i].lang)){ v=_vozes[i]; break; } } }
+    if(v) u.voice=v;
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+document.addEventListener('click',function(ev){
+  var t=ev.target; while(t&&t!==document&&!(t.getAttribute&&t.getAttribute('data-say'))) t=t.parentNode;
+  if(t&&t!==document&&t.getAttribute){ ev.stopPropagation(); ev.preventDefault(); speak(t.getAttribute('data-say')); }
+},true);
+document.addEventListener('keydown',function(ev){
+  var t=ev.target; if(t&&t.getAttribute&&t.getAttribute('data-say')&&(ev.key==='Enter'||ev.key===' ')){ ev.preventDefault(); speak(t.getAttribute('data-say')); }
+});
+var _ac=null;
+function bip(ok){
+  try{
+    if(!_ac) _ac=new (window.AudioContext||window.webkitAudioContext)();
+    var o=_ac.createOscillator(), g=_ac.createGain();
+    o.type='sine'; o.frequency.value=ok?880:260; g.gain.value=0.06;
+    o.connect(g); g.connect(_ac.destination); o.start(); o.stop(_ac.currentTime+(ok?0.12:0.2));
+  }catch(e){}
+}
+function modal(title,msg,onOk,withCancel){
+  document.getElementById('mdTitle').innerHTML=title;
+  document.getElementById('mdMsg').innerHTML=msg;
+  var m=document.getElementById('mask'), ok=document.getElementById('mdOk'), ca=document.getElementById('mdCancel');
+  ca.style.display=withCancel?'block':'none';
+  ok.onclick=function(){ m.classList.remove('on'); if(onOk)onOk(); };
+  ca.onclick=function(){ m.classList.remove('on'); };
+  m.classList.add('on');
+}
+function confetti(n){
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var cores=['#1E88C8','#F2665C','#2BB673','#F6C343','#FFFFFF'], i;
+  for(i=0;i<(n||30);i++){ (function(i){
+    var d=document.createElement('div'); d.className='conf';
+    d.style.left=(Math.random()*100)+'vw'; d.style.background=cores[i%cores.length];
+    d.style.animation='fall '+(1.6+Math.random()*1.2)+'s linear forwards'; d.style.animationDelay=(Math.random()*.5)+'s';
+    document.body.appendChild(d); setTimeout(function(){ if(d.parentNode)d.parentNode.removeChild(d); },3600);
+  })(i); }
+}
+function hashStr(s){ var h=5381,i; for(i=0;i<s.length;i++){ h=((h*33)+s.charCodeAt(i))>>>0; } return h; }
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0;
+  var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function shuffleSeeded(arr,key){
+  var r=mulberry32(hashStr(key)), a=arr.slice(), i,j,t;
+  for(i=a.length-1;i>0;i--){ j=Math.floor(r()*(i+1)); t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function dataBR(iso){ try{ return new Date(iso).toLocaleString('pt-BR'); }catch(e){ return iso; } }
+
+/* =========================================================
+   TRILHA COM CADEADOS
+   etapas 0..5 = tanques 1..6 · 6 = Cartaz · 7 = Show Final
+   ========================================================= */
+var ETAPAS=[
+ {nome:TITULOS[1]},{nome:TITULOS[2]},{nome:TITULOS[3]},{nome:TITULOS[4]},{nome:TITULOS[5]},{nome:TITULOS[6]},
+ {nome:'🗺️ Cartaz do Aquário'},{nome:'🌟 Show Final'}
+];
+function feita(i){
+  if(i<=5){ var f=S.fases[i+1]; return !!(f&&f.concluido); }
+  if(i===6) return !!(S.mural&&S.mural.concluido);
+  return !!S.finalConc;
+}
+function quandoFeita(i){
+  if(i<=5){ var f=S.fases[i+1]; return f?f.concluidoEm:null; }
+  if(i===6) return S.mural.concluidoEm||null;
+  return S.finalEm||null;
+}
+function aberta(i){ return i===0 || T.liberadoPelosPais || feita(i) || feita(i-1); }
+function entregasFaltando(){ var n=0,i; for(i=0;i<=5;i++) if(!feita(i)) n++; return n; }
+function fraseTrava(i){
+  if(i>=1&&i<=5) return '🔒 Destrava quando você concluir o tanque '+i+' — '+TITULOS[i]+'.';
+  if(i===6) return '🔒 Destrava quando você concluir os 6 tanques (faltam '+entregasFaltando()+').';
+  return '🔒 Destrava quando você ler o Cartaz do Aquário até o fim e clicar em "✅ Li o cartaz até o fim".';
+}
+function openStep(i){
+  if(!aberta(i)){ modal('🔒 Esta etapa ainda está trancada',fraseTrava(i).replace('🔒 ','')); return; }
+  if(i<=5) startP(i+1);
+  else if(i===6) abrirMural();
+  else startFinal();
+}
+
+function go(id){
+  var all=document.querySelectorAll('.screen'), i;
+  for(i=0;i<all.length;i++) all[i].classList.remove('on');
+  document.getElementById(id).classList.add('on');
+  window.scrollTo(0,0);
+  if(id==='scr-menu') refreshMenu();
+  if(id==='scr-mural') checarRolagem();
+}
+
+function refreshMenu(){
+  var i, n=0, h='', primeiroNovo=-1;
+  for(i=1;i<=6;i++){
+    var on=feita(i-1); if(on) n++;
+    document.getElementById('ov'+i).classList.toggle('on',on);
+  }
+  document.getElementById('trayLabel').textContent = n===0 ? '🐚 Suas conchas (nenhuma ainda)' : ('🐚 Suas conchas: '+n+' de 6');
+  for(i=1;i<ETAPAS.length;i++){ if(aberta(i)&&!feita(i)&&!T.liberadoPelosPais){ primeiroNovo=i; break; } }
+  for(i=0;i<ETAPAS.length;i++){
+    var ab=aberta(i), fe=feita(i), cls='btn';
+    if(i===6) cls+=' green'; if(i===7) cls+=' yellow';
+    if(!ab) cls='btn locked';
+    if(i===primeiroNovo) cls+=' glow';
+    var rotulo=(i<=5?(i+1)+'. ':'')+ETAPAS[i].nome;
+    var selo= fe ? '<span class="selo ok">✅ Concluído</span>' : (i===primeiroNovo ? '<span class="selo novo">✨ Novo destravado</span>' : '');
+    h+='<button class="'+cls+'" id="mb'+i+'" onclick="openStep('+i+')">'+(ab?'':'🔒 ')+rotulo+selo+'</button>';
+    var desc = i<=5 ? DESC[i+1] : (i===6 ? 'O cartaz de revisão para ler com um adulto na véspera.' : '10 questões misturando tudo. Gera o código para os pais.');
+    h+='<p class="menu-desc'+(ab?'':' lock')+'" id="md'+i+'">'+(ab?desc:fraseTrava(i))+'</p>';
+  }
+  document.getElementById('menuList').innerHTML=h;
+  document.getElementById('paisSelo').innerHTML = T.liberadoPelosPais
+    ? '<div class="paisbox">🔓 Trilha liberada pelos pais — todos os materiais estão abertos. <button class="btn ghost small" style="margin:6px 0 0;" onclick="trancarDeNovo()">🔒 Trancar de novo</button></div>' : '';
+  if(S.quando) document.getElementById('saveInfo').textContent='Progresso salvo automaticamente · '+S.quando;
+}
+
+/* =========================================================
+   PÍLULAS
+   ========================================================= */
+var P={fase:1,idx:0};
+function startP(p){
+  P={fase:p,idx:0};
+  document.getElementById('pillTitle').textContent=PILLS[p].t;
+  renderPill(); go('scr-pill');
+}
+function renderPill(){
+  var lista=PILLS[P.fase].p, it=lista[P.idx], i, h='';
+  h+='<div class="pill-emoji">'+it.e+'</div><div class="pill-text">'+it.x+'</div>';
+  if(it.y) h+='<div class="pill-extra">'+it.y+'</div>';
+  document.getElementById('pillBox').innerHTML=h;
+  var d=''; for(i=0;i<lista.length;i++) d+='<i class="'+(i<=P.idx?'on':'')+'"></i>';
+  document.getElementById('pillDots').innerHTML=d;
+  var bt=document.getElementById('pillNext');
+  bt.textContent=(P.idx===lista.length-1)?'Agora vamos treinar! 🐙':'Entendi! Próximo ➡️';
+  bt.onclick=function(){ if(P.idx<lista.length-1){ P.idx++; renderPill(); window.scrollTo(0,0); } else startGame(P.fase); };
+}
+
+/* =========================================================
+   MOTOR DOS MINIJOGOS
+   ========================================================= */
+var G={};
+function area(){ return document.getElementById('gameArea'); }
+function fbEl(){ return document.getElementById('gameFb'); }
+function nextBtn(){ return document.getElementById('gameNext'); }
+function setCount(t){ document.getElementById('gameCount').textContent=t; }
+function showFb(ok,html){ var f=fbEl(); f.className='fb on '+(ok?'good':'bad'); f.innerHTML=html; }
+function clearFb(){ var f=fbEl(); f.className='fb'; f.innerHTML=''; }
+
+function ordemOpcoes(q,key){
+  var idx=q.o.map(function(_,i){return i;});
+  return q.fixo ? idx : shuffleSeeded(idx,key);
+}
+function renderMC(q,key,onPick){
+  var ordem=ordemOpcoes(q,key), h='', k;
+  h+='<div class="q-text">'+q.p+'</div>';
+  if(q.vis) h+=q.vis;
+  if(q.t==='duo'){
+    h+='<div class="duo">';
+    for(k=0;k<q.o.length;k++) h+='<button class="opt" data-oi="'+k+'">'+q.o[k]+'</button>';
+    h+='</div>';
+  } else {
+    for(k=0;k<ordem.length;k++) h+='<button class="opt" data-oi="'+ordem[k]+'">'+q.o[ordem[k]]+'</button>';
+  }
+  area().innerHTML=h;
+  var btns=area().querySelectorAll('.opt'), i;
+  for(i=0;i<btns.length;i++) btns[i].addEventListener('click',function(){ onPick(this,parseInt(this.getAttribute('data-oi'),10)); });
+}
+function markMC(btn,oi,q){
+  var btns=area().querySelectorAll('.opt'), i, acertou=(oi===q.c);
+  for(i=0;i<btns.length;i++){
+    var idx=parseInt(btns[i].getAttribute('data-oi'),10); btns[i].disabled=true;
+    if(idx===q.c) btns[i].classList.add('ok'); else if(btns[i]===btn) btns[i].classList.add('no');
+  }
+  bip(acertou);
+  if(acertou) showFb(true,'✅ <b>Boa! É isso mesmo.</b> '+(q.bom||''));
+  else showFb(false,'💛 <b>Quase! Vamos aprender juntos.</b><br>'+((q.ex&&q.ex[oi])?q.ex[oi]+'<br>':'')+
+    'A resposta certa é <b>'+q.o[q.c]+'</b>. '+(q.bom||''));
+  return acertou;
+}
+
+function startGame(p){
+  for(var k in S.escrita){ if(S.escrita[k]){ S.escrita[k].contado=false; S.escrita[k].pontuado=false; } }
+  G={p:p, idx:0, acertos:0, total:0};
+  document.getElementById('gameTitle').textContent=TITULOS[p]+' — hora de treinar';
+  go('scr-game'); g_render();
+}
+function g_render(){
+  clearFb(); nextBtn().style.display='none';
+  var lista=JOGO[G.p], it=lista[G.idx];
+  setCount('Desafio '+(G.idx+1)+' de '+lista.length+' · ⭐ '+G.acertos);
+  if(it.t==='grp') return g_grp(it);
+  if(it.t==='esc') return g_esc(it);
+  if(it.t==='ord') return g_ord(it);
+  if(it.t==='cor') return g_cor(it);
+  renderMC(it,'p'+G.p+'q'+G.idx+SEMENTE,function(btn,oi){
+    if(markMC(btn,oi,it)) G.acertos++;
+    G.total++; g_next();
+  });
+}
+function g_next(){
+  var lista=JOGO[G.p];
+  nextBtn().style.display='block';
+  nextBtn().textContent=(G.idx===lista.length-1)?'Terminar o tanque 🐚':'Continuar ➡️';
+  nextBtn().onclick=function(){
+    if(G.idx<lista.length-1){ G.idx++; g_render(); window.scrollTo(0,0); }
+    else winFase(G.p,G.acertos,G.total);
+  };
+}
+
+/* separar em grupos: um item por vez, a criança toca no grupo certo */
+function g_grp(it){
+  var h='', k;
+  G.grpOrdem=shuffleSeeded(it.itens.map(function(_,i){return i;}),'grp'+G.p+'_'+G.idx);
+  G.grpPos=0; G.grpErros=0; G.grpItem=it;
+  h+='<div class="q-text">'+it.p+'</div><div class="grp-card" id="grpCard"></div><div class="grp-btns">';
+  for(k=0;k<it.grupos.length;k++) h+='<button class="opt grpb" data-g="'+k+'">'+it.grupos[k]+'</button>';
+  h+='</div><div class="baskets">';
+  for(k=0;k<it.grupos.length;k++) h+='<div class="basket"><b>'+it.grupos[k]+'</b><div id="bk'+k+'"></div></div>';
+  h+='</div>';
+  area().innerHTML=h;
+  var bts=area().querySelectorAll('.grpb'), i;
+  for(i=0;i<bts.length;i++) bts[i].addEventListener('click',function(){ grpPick(this,parseInt(this.getAttribute('data-g'),10)); });
+  grpShow();
+}
+function grpShow(){
+  var it=G.grpItem, x=it.itens[G.grpOrdem[G.grpPos]];
+  document.getElementById('grpCard').innerHTML='<div class="pill-emoji">'+x.e+'</div><div class="pill-text">'+x.n+'</div><div class="menu-desc" style="margin:4px 0 0;">'+(G.grpPos+1)+' de '+it.itens.length+'</div>';
+}
+function grpPick(btn,k){
+  var it=G.grpItem; if(G.grpPos>=it.itens.length) return;
+  var x=it.itens[G.grpOrdem[G.grpPos]];
+  if(k===x.g){
+    document.getElementById('bk'+k).innerHTML+='<span class="chip">'+x.e+' '+x.n+'</span>';
+    G.grpPos++; clearFb();
+    if(G.grpPos===it.itens.length){
+      var bts=area().querySelectorAll('.grpb'), i; for(i=0;i<bts.length;i++) bts[i].disabled=true;
+      document.getElementById('grpCard').innerHTML='<div class="pill-emoji">📦</div><div class="pill-text">Tudo separado!</div>';
+      G.total++;
+      if(G.grpErros===0){ G.acertos++; showFb(true,'✅ <b>Perfeito, tudo no lugar certo de primeira!</b> '+it.bom); }
+      else showFb(true,'✅ <b>Completou!</b> Você errou '+G.grpErros+' vez(es) no caminho. '+it.bom);
+      g_next();
+    } else grpShow();
+  } else {
+    G.grpErros++;
+    btn.classList.remove('shake'); void btn.offsetWidth; btn.classList.add('shake');
+    setTimeout(function(){ btn.classList.remove('shake'); },400);
+    showFb(false,'💛 <b>Quase!</b> '+x.d+' Tente outro grupo.');
+  }
+}
+
+
+/* montar a frase: tocar nas palavras na ordem certa */
+function g_ord(it){
+  var n=it.w.length, idx=[], i;
+  for(i=0;i<n;i++) idx.push(i);
+  var mix=shuffleSeeded(idx,'ord'+G.p+'_'+G.idx+SEMENTE);
+  var igual=true; for(i=0;i<n;i++) if(mix[i]!==i) igual=false;
+  if(igual) mix.push(mix.shift());
+  G.ordMix=mix; G.ordSel=[]; G.ordItem=it; G.ordFeito=false;
+  var h='<div class="q-text">'+it.p+'</div><div class="ord-out" id="ordOut"></div><div class="ord-pool" id="ordPool">';
+  for(i=0;i<n;i++) h+='<button class="opt ordw" data-w="'+mix[i]+'">'+esc(it.w[mix[i]])+'</button>';
+  h+='</div><div class="btn-row"><button class="btn ghost small" id="ordApaga" onclick="ordApagar()">↩️ Apagar</button>'+
+     '<button class="btn green small" id="ordChk" onclick="ordConferir()" disabled>Conferir ✅</button></div>';
+  area().innerHTML=h;
+  var bts=area().querySelectorAll('.ordw');
+  for(i=0;i<bts.length;i++) bts[i].addEventListener('click',function(){ ordPick(this); });
+  ordShow();
+}
+function ordShow(){
+  var it=G.ordItem, h='', i;
+  if(!G.ordSel.length) h='<span class="vazio">Toque nas palavras na ordem certa 👇</span>';
+  for(i=0;i<G.ordSel.length;i++) h+='<span class="chip">'+esc(it.w[G.ordSel[i]])+'</span>';
+  document.getElementById('ordOut').innerHTML=h;
+  var bts=area().querySelectorAll('.ordw');
+  for(i=0;i<bts.length;i++){ var w=parseInt(bts[i].getAttribute('data-w'),10); bts[i].classList.toggle('usado',G.ordSel.indexOf(w)>=0); }
+  document.getElementById('ordChk').disabled=(G.ordFeito||G.ordSel.length<it.w.length);
+}
+function ordPick(btn){
+  if(G.ordFeito) return;
+  var w=parseInt(btn.getAttribute('data-w'),10);
+  if(G.ordSel.indexOf(w)>=0) return;
+  G.ordSel.push(w); ordShow();
+}
+function ordApagar(){ if(G.ordFeito) return; G.ordSel.pop(); ordShow(); }
+function ordConferir(){
+  var it=G.ordItem, i, ok=true;
+  if(G.ordFeito||G.ordSel.length<it.w.length) return;
+  for(i=0;i<it.w.length;i++) if(G.ordSel[i]!==i) ok=false;
+  G.ordFeito=true; G.total++; if(ok) G.acertos++;
+  document.getElementById('ordChk').disabled=true; document.getElementById('ordApaga').disabled=true;
+  var bts=area().querySelectorAll('.ordw'); for(i=0;i<bts.length;i++) bts[i].disabled=true;
+  if(ok) showFb(true,'✅ <b>Boa! A frase ficou na ordem certinha.</b> '+(it.bom||''));
+  else showFb(false,'💛 <b>Quase! Vamos aprender juntos.</b><br>A ordem certa é: <b>'+esc(it.w.join(' '))+'</b>');
+  g_next();
+}
+
+
+/* pintar as maçãs: ODD = BLUE · EVEN = YELLOW (igual à prova de 05/11) */
+function g_cor(it){
+  var h='<div class="q-text">'+it.p+'</div><div class="tintas">'+
+    '<button class="tinta azul" id="tAzul" onclick="corTinta(\'azul\')">🔵 BLUE</button>'+
+    '<button class="tinta amarela" id="tAmar" onclick="corTinta(\'amarela\')">🟡 YELLOW</button></div><div class="macas">', i;
+  for(i=0;i<it.nums.length;i++) h+='<button class="maca" data-n="'+it.nums[i]+'" onclick="corPinta(this)">'+it.nums[i]+'</button>';
+  h+='</div><p class="menu-desc" id="corInfo" style="margin:8px 0;">Primeiro escolha a tinta. Depois toque nas maçãs.</p>'+
+     '<button class="btn green small" id="corChk" onclick="corConferir()" disabled>Conferir ✅</button>';
+  area().innerHTML=h; G.corTinta=null; G.corFeito=false; G.corItem=it; G.corTent=0;
+}
+function corTinta(c){
+  G.corTinta=c;
+  document.getElementById('tAzul').classList.toggle('sel',c==='azul');
+  document.getElementById('tAmar').classList.toggle('sel',c==='amarela');
+  document.getElementById('corInfo').textContent = c==='azul' ? 'Tinta azul (BLUE) na mão. Pinte os ODD (ímpares)!' : 'Tinta amarela (YELLOW) na mão. Pinte os EVEN (pares)!';
+}
+function corPinta(btn){
+  if(G.corFeito) return;
+  if(!G.corTinta){ document.getElementById('corInfo').textContent='👆 Escolha primeiro a tinta: BLUE ou YELLOW.'; return; }
+  btn.classList.remove('azul','amarela','errada'); btn.classList.add(G.corTinta);
+  var todas=area().querySelectorAll('.maca'), i, n=0;
+  for(i=0;i<todas.length;i++) if(todas[i].classList.contains('azul')||todas[i].classList.contains('amarela')) n++;
+  document.getElementById('corChk').disabled=(n<todas.length);
+  if(n<todas.length) document.getElementById('corInfo').textContent='Faltam '+(todas.length-n)+' maçãs para pintar.';
+  else document.getElementById('corInfo').textContent='Todas pintadas! Agora clique em Conferir.';
+}
+function corConferir(){
+  if(G.corFeito) return;
+  var todas=area().querySelectorAll('.maca'), i, erros=[];
+  for(i=0;i<todas.length;i++){
+    var n=parseInt(todas[i].getAttribute('data-n'),10), certa=(n%2===1)?'azul':'amarela';
+    todas[i].classList.remove('errada');
+    if(!todas[i].classList.contains(certa)){ erros.push(n); todas[i].classList.add('errada'); }
+  }
+  G.corTent++;
+  if(erros.length && G.corTent===1){
+    bip(false);
+    showFb(false,'💛 <b>Quase!</b> As maçãs com borda vermelha estão com a cor trocada: <b>'+erros.join(', ')+'</b>.<br>Lembre: <b>ODD (ímpar) = BLUE 🔵</b> · <b>EVEN (par) = YELLOW 🟡</b>. Pinte de novo e confira.');
+    return;
+  }
+  G.corFeito=true; G.total++;
+  var bts=area().querySelectorAll('.maca,.tinta'); for(i=0;i<bts.length;i++) bts[i].disabled=true;
+  document.getElementById('corChk').disabled=true;
+  S.corDet={erros1:G.corTent===1?0:null, tentativas:G.corTent, errosFinais:erros, quando:new Date().toISOString()}; save();
+  if(!erros.length && G.corTent===1){ G.acertos++; bip(true); showFb(true,'✅ <b>Perfeito, tudo certo de primeira!</b> '+G.corItem.bom); }
+  else if(!erros.length){ bip(true); showFb(true,'✅ <b>Agora sim, tudo certo!</b> (Na primeira tentativa tinha cor trocada.) '+G.corItem.bom); }
+  else { for(i=0;i<todas.length;i++){ var m=parseInt(todas[i].getAttribute('data-n'),10); todas[i].classList.remove('azul','amarela','errada'); todas[i].classList.add(m%2===1?'azul':'amarela'); }
+    bip(false); showFb(false,'💛 <b>Vamos aprender juntos.</b> Ainda tinha cor trocada em: '+erros.join(', ')+'. Olhe como fica certinho agora: '+G.corItem.bom); }
+  g_next();
+}
+
+/* escrita com anticópia e autoavaliação guiada */
+function norm(s){
+  return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+}
+function palavras(s){ var n=norm(s); return n?n.split(' '):[]; }
+function ehTranscricao(resp,fonte){
+  var a=palavras(resp), b=palavras(fonte), i, j;
+  if(a.length<4) return false;
+  var maiorSeq=0, emSeq=0, marcado=[];
+  for(i=0;i<a.length;i++) marcado.push(false);
+  for(i=0;i<a.length;i++){
+    for(j=0;j<b.length;j++){
+      var k=0; while(i+k<a.length && j+k<b.length && a[i+k]===b[j+k]) k++;
+      if(k>maiorSeq) maiorSeq=k;
+      if(k>=5){ var z; for(z=0;z<k;z++) marcado[i+z]=true; }
+    }
+  }
+  for(i=0;i<marcado.length;i++) if(marcado[i]) emSeq++;
+  return (maiorSeq>=8) || (emSeq/a.length>0.60);
+}
+function g_esc(it){
+  var sv=S.escrita[it.id]||{}, h='';
+  h+='<div class="wbox'+(sv.transcrita?' red':'')+'" id="wb"><h4>'+it.tit+'</h4>';
+  h+='<p style="font-weight:700;font-size:.97rem;">'+it.enun+'</p>';
+  h+='<textarea id="wtxt" placeholder="Escreva aqui com as suas palavras...">'+esc(sv.resp||'')+'</textarea>';
+  h+='<div id="wavisos"></div><button class="btn green small" id="wchk" onclick="escChk()">Conferir ✅</button><div id="wdepois"></div></div>';
+  area().innerHTML=h; G.tentativa=0; G.escItem=it;
+}
+function escChk(){
+  var it=G.escItem, txt=document.getElementById('wtxt').value.trim();
+  if(txt.length<15){ document.getElementById('wavisos').innerHTML='<div class="warn">✏️ Escreva um pouquinho mais: uma ou duas frases contando do seu jeito.</div>'; return; }
+  var copiou=ehTranscricao(txt,it.enun+' '+(it.fonte||''));
+  var reg0=S.escrita[it.id]||{};
+  if(G.tentativa===1 && reg0.tentou===txt){
+    document.getElementById('wavisos').innerHTML='<div class="warn">✏️ Você ainda não mudou nada. Troque algumas palavras e escreva do SEU jeito antes de conferir de novo.</div>';
+    document.getElementById('wtxt').focus(); return;
+  }
+  G.tentativa=(G.tentativa||0)+1;
+  if(copiou && G.tentativa===1){
+    S.escrita[it.id]=S.escrita[it.id]||{}; S.escrita[it.id].tentou=txt; save();
+    document.getElementById('wavisos').innerHTML='<div class="warn">🐙 Boa parte da sua resposta está igualzinha ao texto.<br>Tente reescrever <b>com as suas palavras</b>: conte do SEU jeito, como se fosse para um amigo, sem olhar o texto. Pode ficar curtinho e simples, o que vale é ser <b>SEU</b>.</div>';
+    document.getElementById('wtxt').focus(); return;
+  }
+  var reg=S.escrita[it.id]||{}; reg.resp=txt; reg.transcrita=!!copiou; reg.chk=reg.chk||{}; reg.quando=new Date().toISOString();
+  S.escrita[it.id]=reg; save();
+  document.getElementById('wchk').disabled=true;
+  document.getElementById('wavisos').innerHTML = copiou ? '<div class="redflag">🔴 Esta resposta ficou marcada para revisar: continua muito parecida com o texto. Se reescrever com as suas palavras, a marca some.</div>' : '';
+  document.getElementById('wb').classList.toggle('red',!!copiou);
+  var h='<div class="modelo"><b>Resposta modelo (um jeito possível):</b><br>'+it.modelo+'</div><div class="chk"><p style="font-weight:900;">Agora confira a SUA resposta:</p>', i;
+  for(i=0;i<it.chk.length;i++){
+    h+='<p>'+it.chk[i]+'</p><div class="yn"><button id="y'+i+'" onclick="escMarca('+i+',1)">Sim 👍</button><button id="n'+i+'" onclick="escMarca('+i+',0)">Ainda não 🤔</button></div>';
+  }
+  h+='</div><div id="chkStatus"></div><button class="btn ghost small" onclick="escReescrever()">✏️ Quero reescrever</button>';
+  document.getElementById('wdepois').innerHTML=h;
+  for(i=0;i<it.chk.length;i++){ var v=reg.chk[i];
+    if(v===1) document.getElementById('y'+i).classList.add('sel-y'); if(v===0) document.getElementById('n'+i).classList.add('sel-n'); }
+  escStatus();
+}
+function escMarca(i,v){
+  var it=G.escItem, reg=S.escrita[it.id]; reg.chk=reg.chk||{}; reg.chk[i]=v; save();
+  document.getElementById('y'+i).classList.toggle('sel-y',v===1);
+  document.getElementById('n'+i).classList.toggle('sel-n',v===0);
+  escStatus();
+}
+function escStatus(){
+  var it=G.escItem, reg=S.escrita[it.id], i, todos=true, algumNao=false;
+  for(i=0;i<it.chk.length;i++){ if(reg.chk[i]===undefined) todos=false; if(reg.chk[i]===0) algumNao=true; }
+  var el=document.getElementById('chkStatus');
+  if(!todos){ el.innerHTML='<div class="warn">Responda Sim ou Ainda não em cada item para continuar.</div>'; nextBtn().style.display='none'; return; }
+  if(!reg.contado){ reg.contado=true; G.total++; }
+  if(algumNao||reg.transcrita){ reg.status='revisar'; el.innerHTML='<div class="warn">🔁 <b>Vale revisar.</b> Conserte o que faltou e clique em "Quero reescrever".</div>'; }
+  else { reg.status='ok'; el.innerHTML='<div class="modelo">✅ <b>Resposta aprovada pelo Polvo Lelé! Glub-glub!</b></div>'; if(!reg.pontuado){ reg.pontuado=true; G.acertos++; } }
+  save(); g_next();
+}
+function escReescrever(){
+  var reg=S.escrita[G.escItem.id]; if(reg&&reg.contado&&!reg.pontuado){ reg.contado=false; G.total--; }
+  if(reg&&reg.pontuado){ reg.pontuado=false; reg.contado=false; G.acertos--; G.total--; }
+  document.getElementById('wchk').disabled=false; document.getElementById('wdepois').innerHTML='';
+  nextBtn().style.display='none'; document.getElementById('wtxt').focus();
+  G.tentativa=1;
+}
+
+/* =========================================================
+   FIM DE TANQUE
+   ========================================================= */
+function winFase(p,acertos,total){
+  var ant=S.fases[p]||{};
+  S.fases[p]={feita:true, concluido:true, concluidoEm:ant.concluidoEm||new Date().toISOString(),
+              acertos:acertos, total:total, melhor:Math.max(acertos,ant.melhor||0), vezes:(ant.vezes||0)+1};
+  save(); confetti(34);
+  var pc=total?Math.round(acertos*100/total):0;
+  var msg='Você terminou <b>'+TITULOS[p]+'</b> com <b>'+acertos+'</b> de <b>'+total+'</b>.<br>';
+  msg+= pc>=80 ? 'Uhuu! Tanque perfeito! 🏅' : (pc>=50 ? 'Muito bem! Se quiser, refaça este tanque depois para fixar. 💪' : 'Você chegou até o fim, que é o mais importante! Vale repetir este tanque mais tarde. 🤗');
+  msg+='<br><br>🐚 Você ganhou uma <b>concha</b> para a sua coleção!';
+  var prox=p;
+  msg+= prox<=5 ? '<br>🔓 Destravou: <b>'+TITULOS[prox+1]+'</b>.' : '<br>🔓 Destravou: <b>🗺️ Cartaz do Aquário</b>.';
+  document.getElementById('wonMsg').innerHTML=msg;
+  var bt=document.getElementById('wonNext');
+  bt.textContent = prox<=5 ? ('Próximo tanque: '+TITULOS[prox+1]+' ➡️') : 'Ler o Cartaz do Aquário ➡️';
+  bt.onclick=function(){ openStep(prox); };
+  go('scr-won');
+}
+
+/* =========================================================
+   MURAL (cartaz) — concluído ao rolar até o fim + botão
+   ========================================================= */
+function abrirMural(){
+  go('scr-mural'); atualizarBotaoMural();
+}
+function checarRolagem(){
+  if(!document.getElementById('scr-mural').classList.contains('on')) return;
+  var doc=document.documentElement, alto=Math.max(doc.scrollHeight,document.body.scrollHeight);
+  var pct=Math.min(100,Math.round(((window.scrollY||doc.scrollTop)+window.innerHeight)*100/alto));
+  if(pct>(S.mural.maxPct||0)){ S.mural.maxPct=pct; if(pct>=90) save(); }
+  atualizarBotaoMural();
+}
+function atualizarBotaoMural(){
+  var b=document.getElementById('btnLiMural'), pr=document.getElementById('btnProntoFinal'), hint=document.getElementById('muralHint');
+  if(S.mural.concluido){ b.disabled=true; b.textContent='✅ Cartaz lido até o fim'; pr.style.display='block'; hint.textContent='Muito bem! O Show Final está destravado.'; return; }
+  b.disabled=(S.mural.maxPct||0)<90;
+  hint.textContent=b.disabled?'O botão acende quando você rolar até o fim do cartaz.':'Pode clicar!';
+}
+window.addEventListener('scroll',checarRolagem,{passive:true});
+function concluirMural(){
+  if((S.mural.maxPct||0)<90) return;
+  S.mural.concluido=true; S.mural.concluidoEm=new Date().toISOString(); save(); confetti(30);
+  atualizarBotaoMural();
+}
+
+/* =========================================================
+   SHOW FINAL
+   ========================================================= */
+function startFinal(){
+  if(!aberta(7)){ modal('🔒 Ainda não',fraseTrava(7).replace('🔒 ','')); return; }
+  G={p:'F', idx:0, acertos:0, det:[], ordem:shuffleSeeded(FINAL.map(function(_,i){return i;}),'finalq'+SEMENTE)};
+  document.getElementById('gameTitle').textContent='🌟 Show Final';
+  go('scr-game'); f_render();
+}
+function f_render(){
+  clearFb(); nextBtn().style.display='none';
+  var q=FINAL[G.ordem[G.idx]];
+  setCount('Questão '+(G.idx+1)+' de '+FINAL.length+' · ⭐ '+G.acertos);
+  renderMC(q,'fin'+G.ordem[G.idx]+SEMENTE,function(btn,oi){
+    var ok=markMC(btn,oi,q); if(ok) G.acertos++;
+    G.det.push({q:q.p.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim(),marcou:q.o[oi],certa:q.o[q.c],ok:ok});
+    nextBtn().style.display='block';
+    nextBtn().textContent=(G.idx===FINAL.length-1)?'Ver o resultado 🌟':'Continuar ➡️';
+    nextBtn().onclick=function(){ if(G.idx<FINAL.length-1){ G.idx++; f_render(); window.scrollTo(0,0); } else f_end(); };
+  });
+}
+function f_end(){
+  S.finalScore=G.acertos; S.finalDet=G.det;
+  S.finalCode='SIM-'+(G.acertos<10?'0':'')+G.acertos+'-'+S.codeLetters;
+  S.finalConc=true; if(!S.finalEm) S.finalEm=new Date().toISOString();
+  save(); confetti(60);
+  document.getElementById('fimScore').textContent='Você acertou '+G.acertos+' de '+FINAL.length+'!';
+  var pc=Math.round(G.acertos*100/FINAL.length), m;
+  if(pc>=90) m='O aquário inteiro está brilhando! Você está prontíssima(o) para a avaliação. 🥇';
+  else if(pc>=70) m='Muito bom! Dê mais uma lida no Cartaz do Aquário e fica craque. 👏';
+  else if(pc>=50) m='Bom trabalho! Refaça os tanques em que teve dúvida. 💪';
+  else m='Você chegou até o fim, isso é o que vale! Vamos repetir os tanques com um adulto. 🤗';
+  document.getElementById('fimMsg').textContent=m;
+  document.getElementById('fimCode').textContent=S.finalCode;
+  go('scr-fim');
+}
+
+/* =========================================================
+   ÁREA DOS PAIS
+   ========================================================= */
+function codigoValido(){
+  var code=(document.getElementById('paisCode').value||'').trim().toUpperCase();
+  return code==='PAIS-77' || (S.finalCode && code===S.finalCode);
+}
+function abrirRelatorio(){
+  if(!codigoValido()){ modal('🔒 Código não confere','Digite <b>PAIS-77</b> (código fixo da família) ou o código <b>SIM-XX-YY</b> que apareceu no fim do Show Final.'); return; }
+  renderTrilhaPais(); renderRelatorio();
+}
+function renderTrilhaPais(){
+  document.getElementById('paisTrilha').innerHTML = T.liberadoPelosPais
+    ? '<div class="paisbox">🔓 Trilha liberada pelos pais em '+dataBR(T.liberadoEm)+'.<button class="btn ghost small" onclick="trancarDeNovo()">🔒 Trancar de novo</button></div>'
+    : '<button class="btn yellow small" onclick="liberarTrilha()">🔓 Liberar todos os materiais</button><p class="menu-desc" style="margin:0;">Use quando a criança estudou de outro jeito ou trocou de aparelho.</p>';
+}
+function liberarTrilha(){
+  if(!codigoValido()) return;
+  T.liberadoPelosPais=true; T.liberadoEm=new Date().toISOString(); saveT();
+  renderTrilhaPais(); renderRelatorio(); refreshMenu();
+  modal('🔓 Trilha liberada','Todos os materiais estão abertos. No menu aparece o selo "Trilha liberada pelos pais".');
+}
+function trancarDeNovo(){
+  T.liberadoPelosPais=false; T.trancadoEm=new Date().toISOString(); saveT();
+  refreshMenu(); if(document.getElementById('paisReport').innerHTML){ renderTrilhaPais(); renderRelatorio(); }
+}
+function renderRelatorio(){
+  var h='', i;
+  h+='<h3 style="margin-top:14px;">🛤️ Trilha</h3><table class="tbl"><tr><th>Etapa</th><th>Situação</th></tr>';
+  for(i=0;i<ETAPAS.length;i++){
+    h+='<tr><td>'+ETAPAS[i].nome+'</td><td>'+(feita(i)?'✅ concluída em '+dataBR(quandoFeita(i)):'⬜ ainda não')+'</td></tr>';
+  }
+  h+='</table><p style="font-size:.9rem;font-weight:700;">'+(T.liberadoPelosPais?'🔓 Trilha liberada pelos pais em '+dataBR(T.liberadoEm)+'.':'Trilha seguindo a ordem normal (não liberada pelos pais).')+'</p>';
+  h+='<h3>🐚 Tanques</h3><table class="tbl"><tr><th>Tanque</th><th>Última vez</th><th>Melhor</th></tr>';
+  for(i=1;i<=6;i++){ var f=S.fases[i];
+    h+='<tr><td>'+TITULOS[i]+'</td><td>'+(f&&f.concluido?(f.acertos+' de '+f.total):'não fez')+'</td><td>'+(f&&f.concluido?f.melhor:'—')+'</td></tr>'; }
+  h+='</table>';
+  h+='<p style="font-size:.9rem;font-weight:700;">🍎 Jogo de pintar ODD/EVEN (tanque 5): '+(S.corDet?(S.corDet.tentativas===1&&!S.corDet.errosFinais.length?'acertou tudo de primeira ✅':('precisou de '+S.corDet.tentativas+' tentativa(s)'+(S.corDet.errosFinais.length?' — ainda trocou: '+S.corDet.errosFinais.join(', '):''))):'ainda não fez')+'</p>';
+  h+='<p style="font-size:.9rem;font-weight:700;">🗺️ Cartaz: rolou até '+(S.mural.maxPct||0)+'% da página'+(S.mural.concluido?' e marcou "li até o fim".':'.')+'</p>';
+  h+='<h3>✏️ O que a criança escreveu (Tanque 4 — Let\'s e Can)</h3>';
+  var tem=false, lista=JOGO[4];
+  for(i=0;i<lista.length;i++){ var it=lista[i]; if(it.t!=='esc') continue; var reg=S.escrita[it.id]; if(!reg||!reg.resp) continue; tem=true;
+    h+='<div class="wbox'+(reg.transcrita?' red':'')+'"><h4>'+it.tit+'</h4><p style="font-weight:600;font-size:.94rem;">'+esc(reg.resp)+'</p>';
+    if(reg.transcrita) h+='<div class="redflag">🔴 Para revisar: ficou muito parecida com o enunciado (cópia do texto).</div>';
+    var nao=[], j; for(j=0;j<it.chk.length;j++){ if(reg.chk&&reg.chk[j]===0) nao.push(it.chk[j]); }
+    if(nao.length) h+='<div class="warn">Marcou "ainda não" em:<br>• '+nao.join('<br>• ')+'</div>';
+    if(reg.tentou && reg.tentou!==reg.resp) h+='<p style="font-size:.85rem;color:#7C7889;"><b>1ª tentativa (era cópia):</b> '+esc(reg.tentou)+'</p>';
+    h+='<p style="font-size:.85rem;"><b>Modelo:</b> '+it.modelo+'</p></div>'; }
+  if(!tem) h+='<p style="font-weight:700;">Ainda não escreveu nada.</p>';
+  h+='<h3>🌟 Show Final</h3>';
+  if(S.finalScore===null||S.finalScore===undefined) h+='<p style="font-weight:700;">Ainda não fez o Show Final.</p>';
+  else{
+    h+='<p style="font-weight:800;">Nota: '+S.finalScore+' de '+FINAL.length+' · Código: <b>'+S.finalCode+'</b></p><table class="tbl"><tr><th>Questão</th><th>Marcou</th><th>Certa</th></tr>';
+    for(i=0;i<S.finalDet.length;i++){ var d=S.finalDet[i]; h+='<tr><td>'+(d.ok?'✅':'❌')+' '+d.q+'</td><td>'+d.marcou+'</td><td><b>'+d.certa+'</b></td></tr>'; }
+    h+='</table>';
+  }
+  h+='<h3>📖 Gabarito comentado do Show Final</h3>';
+  for(i=0;i<FINAL.length;i++){ var q=FINAL[i];
+    h+='<div class="wbox"><div style="font-weight:800;margin:0 0 6px;">'+(i+1)+'. '+q.p+'</div>';
+    for(var k=0;k<q.o.length;k++){
+      if(k===q.c) h+='<div style="background:#E2F4EA;border:2px solid #3FA34D;border-radius:10px;padding:6px 9px;margin:4px 0;font-weight:800;">✅ '+q.o[k]+'</div>';
+      else h+='<div style="background:#F1EFF3;border:2px solid #DAD7DF;border-radius:10px;padding:6px 9px;margin:4px 0;color:#6C6878;font-weight:700;">'+q.o[k]+(q.ex&&q.ex[k]?' — <i>'+q.ex[k]+'</i>':'')+'</div>';
+    }
+    h+='</div>'; }
+  h+='<h3>📚 Pontos de atenção (provas e caderno)</h3><ul style="font-weight:700;font-size:.92rem;">'+
+     '<li>🚨 ODD (ímpar) = BLUE · EVEN (par) = YELLOW. Na prova de 05/11 as cores foram trocadas.</li>'+
+     '<li>Olhar a figura antes de marcar ✓ ou ✗: "Let\'s play soccer!" com figura de futebol = ✓.</li>'+
+     '<li>Ler a palavra-chave da fala: Emma → dance (bailarina) · Sue → piano.</li>'+
+     '<li>"I play games" e "I have dinner" (sem "the" no meio).</li>'+
+     '<li>Escrita: sun, moon, can, can\'t, guitar, tennis, basketball, skateboard.</li></ul>';
+  document.getElementById('paisReport').innerHTML=h;
+}
+
+/* =========================================================
+   BACKUP
+   ========================================================= */
+function exportar(){
+  document.getElementById('backupBox').value=JSON.stringify({kit:'aquario_polvo_2ano',exportadoEm:new Date().toISOString(),estado:S,trilha:T});
+  modal('📥 Pronto','O código do backup apareceu na caixa de texto. Copie e guarde (pode mandar por mensagem para outro aparelho).');
+}
+function importar(){
+  var v=document.getElementById('backupBox').value.trim();
+  if(!v){ modal('🤔 Caixa vazia','Cole o código do backup na caixa de texto antes de importar.'); return; }
+  modal('📤 Importar','Isso vai <b>substituir</b> o progresso deste aparelho. Continuar?',function(){
+    try{ var o=JSON.parse(v); if(!o||typeof o!=='object') throw 0;
+      if(o.estado){ S=arrumar(o.estado); if(o.trilha){ T=o.trilha; saveT(); } } else S=arrumar(o);
+      save(); refreshMenu(); modal('✅ Importado','O progresso foi restaurado neste aparelho.');
+    }catch(e){ modal('❌ Não deu','Esse código de backup não parece válido. Confira se copiou tudo.'); }
+  },true);
+}
+function zerar(){
+  modal('🗑️ Zerar tudo','Isso apaga <b>todo</b> o progresso deste aparelho (inclusive a trilha) e não dá para desfazer. Continuar?',function(){
+    lsDel(KEY); lsDel(TKEY); S=arrumar(novoEstado()); T={liberadoPelosPais:false,liberadoEm:null};
+    document.getElementById('paisReport').innerHTML=''; document.getElementById('paisTrilha').innerHTML='';
+    document.getElementById('backupBox').value=''; refreshMenu(); go('scr-menu');
+  },true);
+}
+
+/* ---------- arranque ---------- */
+refreshMenu();
+</script>
+</body>
+</html>
